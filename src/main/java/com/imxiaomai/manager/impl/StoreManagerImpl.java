@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
 import javax.annotation.Resource;
 
@@ -25,7 +26,7 @@ public class StoreManagerImpl  extends BaseManager implements StoreManager{
 	private StoreDao storeDao;
 
 	private static Logger log = Logger.getLogger(StoreManagerImpl.class);
-	Cache<String, List<Store>> cache = CacheBuilder.newBuilder().maximumSize(1000).build();
+	Cache<String, List<Store>> cache = CacheBuilder.newBuilder().maximumSize(1000).expireAfterWrite(300, TimeUnit.SECONDS).build();
 
 	public int updateSelective(Store store){
 		return storeDao.updateSelective(store);
@@ -37,22 +38,7 @@ public class StoreManagerImpl  extends BaseManager implements StoreManager{
 		if(id == null || id <=0 ){
 			return null;
 		}
-		try {
-			final String idKey = "ID"+id.toString();
-			return cache.get(idKey, new Callable<List<Store>>() {
-				@Override
-				public List<Store> call() throws Exception {
-					List<Store> ret = new ArrayList<Store>();
-					String id = idKey.replace("ID", "");
-					Store e = storeDao.getById(Long.valueOf(id));
-					ret.add(e);
-					return ret;
-				}
-			}).get(0);
-		} catch (ExecutionException e) {
-			log.error("get all store failed", e);
-			return null;
-		}
+		return storeDao.getById(Long.valueOf(id));
 	}
 
 	@Override
