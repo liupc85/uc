@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.imxiaomai.persistence.mapper.UserSourceMapper" >
+  <resultMap id="BaseResultMap" type="com.imxiaomai.persistence.domain.UserSource" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="sourceCode" property="sourcecode" jdbcType="TINYINT" />
+    <result column="sourceDesc" property="sourcedesc" jdbcType="VARCHAR" />
+    <result column="mobilePhone" property="mobilephone" jdbcType="VARCHAR" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+  
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    userId,sourceCode,sourceDesc,mobilePhone,createTime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.imxiaomai.persistence.domain.UserSourceExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from userSource
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+ 
+  <delete id="deleteByExample" parameterType="com.imxiaomai.persistence.domain.UserSourceExample" >
+    delete from userSource
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.imxiaomai.persistence.domain.UserSource" >
+    insert into userSource (userId, sourceCode, mobilePhone, createTime)
+    values(#{userid,jdbcType=INTEGER}, #{sourcecode,jdbcType=TINYINT}, 
+    #{mobilephone,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.imxiaomai.persistence.domain.UserSource" >
+    insert into userSource
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="sourcecode != null" >
+        sourceCode,
+      </if>
+      <if test="sourcedesc != null" >
+        sourceDesc,
+      </if>
+      <if test="mobilephone != null" >
+        mobilePhone,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="sourcecode != null" >
+        #{sourcecode,jdbcType=TINYINT},
+      </if>
+      <if test="sourcedesc != null" >
+        #{sourcedesc,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilephone != null" >
+        #{mobilephone,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.imxiaomai.persistence.domain.UserSourceExample" resultType="java.lang.Integer" >
+    select count(*) from userSource
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update userSource
+    <set >
+      <if test="record.userid != null" >
+        userId = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.sourcecode != null" >
+        sourceCode = #{record.sourcecode,jdbcType=TINYINT},
+      </if>
+      <if test="record.sourcedesc != null" >
+        sourceDesc = #{record.sourcedesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobilephone != null" >
+        mobilePhone = #{record.mobilephone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update userSource
+    set userId = #{record.userid,jdbcType=INTEGER},
+      sourceCode = #{record.sourcecode,jdbcType=TINYINT},
+      sourceDesc = #{record.sourcedesc,jdbcType=VARCHAR},
+      mobilePhone = #{record.mobilephone,jdbcType=VARCHAR},
+      createTime = #{record.createtime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  
+ <select id="queryUserSourceByUserId" parameterType="com.imxiaomai.persistence.domain.UserSource" resultType="com.imxiaomai.persistence.domain.UserSource" >
+   select 
+  <include refid="Base_Column_List" />
+   from userSource
+   where userId = #{userid,jdbcType=INTEGER}
+ </select>
+ 
+  <delete id="deleteUserSource" parameterType="com.imxiaomai.persistence.domain.UserSource" >
+    delete from userSource
+    where 1=1    
+ 	and userId = #{userid,jdbcType=INTEGER}
+	and sourceCode = #{sourcecode,jdbcType=TINYINT}
+  </delete>
+ 
+</mapper>

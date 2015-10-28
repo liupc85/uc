@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.imxiaomai.persistence.mapper.ExpresspriceDepricateMapper" >
+  <resultMap id="BaseResultMap" type="com.imxiaomai.persistence.domain.ExpresspriceDepricate" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="expressName" property="expressname" jdbcType="VARCHAR" />
+    <result column="exampleWeight" property="exampleweight" jdbcType="INTEGER" />
+    <result column="examplePrice" property="exampleprice" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.imxiaomai.persistence.domain.ExpresspriceDepricate" extends="BaseResultMap" >
+    <result column="execScript" property="execscript" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, expressName, exampleWeight, examplePrice
+  </sql>
+  <sql id="Blob_Column_List" >
+    execScript
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.imxiaomai.persistence.domain.ExpresspriceDepricateExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from expressPriceInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.imxiaomai.persistence.domain.ExpresspriceDepricateExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from expressPriceInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from expressPriceInfo
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from expressPriceInfo
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.imxiaomai.persistence.domain.ExpresspriceDepricateExample" >
+    delete from expressPriceInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.imxiaomai.persistence.domain.ExpresspriceDepricate" >
+    insert into expressPriceInfo (id, expressName, exampleWeight, 
+      examplePrice, execScript)
+    values (#{id,jdbcType=INTEGER}, #{expressname,jdbcType=VARCHAR}, #{exampleweight,jdbcType=INTEGER}, 
+      #{exampleprice,jdbcType=INTEGER}, #{execscript,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.imxiaomai.persistence.domain.ExpresspriceDepricate" >
+    insert into expressPriceInfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="expressname != null" >
+        expressName,
+      </if>
+      <if test="exampleweight != null" >
+        exampleWeight,
+      </if>
+      <if test="exampleprice != null" >
+        examplePrice,
+      </if>
+      <if test="execscript != null" >
+        execScript,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="expressname != null" >
+        #{expressname,jdbcType=VARCHAR},
+      </if>
+      <if test="exampleweight != null" >
+        #{exampleweight,jdbcType=INTEGER},
+      </if>
+      <if test="exampleprice != null" >
+        #{exampleprice,jdbcType=INTEGER},
+      </if>
+      <if test="execscript != null" >
+        #{execscript,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.imxiaomai.persistence.domain.ExpresspriceDepricateExample" resultType="java.lang.Integer" >
+    select count(*) from expressPriceInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update expressPriceInfo
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.expressname != null" >
+        expressName = #{record.expressname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.exampleweight != null" >
+        exampleWeight = #{record.exampleweight,jdbcType=INTEGER},
+      </if>
+      <if test="record.exampleprice != null" >
+        examplePrice = #{record.exampleprice,jdbcType=INTEGER},
+      </if>
+      <if test="record.execscript != null" >
+        execScript = #{record.execscript,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update expressPriceInfo
+    set id = #{record.id,jdbcType=INTEGER},
+      expressName = #{record.expressname,jdbcType=VARCHAR},
+      exampleWeight = #{record.exampleweight,jdbcType=INTEGER},
+      examplePrice = #{record.exampleprice,jdbcType=INTEGER},
+      execScript = #{record.execscript,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update expressPriceInfo
+    set id = #{record.id,jdbcType=INTEGER},
+      expressName = #{record.expressname,jdbcType=VARCHAR},
+      exampleWeight = #{record.exampleweight,jdbcType=INTEGER},
+      examplePrice = #{record.exampleprice,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.imxiaomai.persistence.domain.ExpresspriceDepricate" >
+    update expressPriceInfo
+    <set >
+      <if test="expressname != null" >
+        expressName = #{expressname,jdbcType=VARCHAR},
+      </if>
+      <if test="exampleweight != null" >
+        exampleWeight = #{exampleweight,jdbcType=INTEGER},
+      </if>
+      <if test="exampleprice != null" >
+        examplePrice = #{exampleprice,jdbcType=INTEGER},
+      </if>
+      <if test="execscript != null" >
+        execScript = #{execscript,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.imxiaomai.persistence.domain.ExpresspriceDepricate" >
+    update expressPriceInfo
+    set expressName = #{expressname,jdbcType=VARCHAR},
+      exampleWeight = #{exampleweight,jdbcType=INTEGER},
+      examplePrice = #{exampleprice,jdbcType=INTEGER},
+      execScript = #{execscript,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.imxiaomai.persistence.domain.ExpresspriceDepricate" >
+    update expressPriceInfo
+    set expressName = #{expressname,jdbcType=VARCHAR},
+      exampleWeight = #{exampleweight,jdbcType=INTEGER},
+      examplePrice = #{exampleprice,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

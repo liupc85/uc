@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans default-autowire="byName">
+
+	<bean id="groupSequence" class="com.imxiaomai.base.dao.GroupSequence" />
+	<bean id="areaDao" class="com.imxiaomai.dao.impl.AreaDaoImpl" />
+	<bean id="cityDao" class="com.imxiaomai.dao.impl.CityDaoImpl" />
+	<bean id="collegeDao" class="com.imxiaomai.dao.impl.CollegeDaoImpl" />
+	<bean id="countryDao" class="com.imxiaomai.dao.impl.CountryDaoImpl" />
+	<bean id="courierDeviceDao" class="com.imxiaomai.dao.impl.CourierDeviceDaoImpl" />
+	<bean id="courierMiDeviceDao" class="com.imxiaomai.dao.impl.CourierMiDeviceDaoImpl" />
+	<bean id="deviceDao" class="com.imxiaomai.dao.impl.DeviceDaoImpl" />
+	<bean id="expressDao" class="com.imxiaomai.dao.impl.ExpressDaoImpl" />
+	<bean id="expressPriceDao" class="com.imxiaomai.dao.impl.ExpressPriceDaoImpl" />
+	<bean id="ExpressPriceSfDao" class="com.imxiaomai.dao.impl.ExpressPriceSfDaoImpl" />
+	<bean id="feedbackDao" class="com.imxiaomai.dao.impl.FeedbackDaoImpl" />
+	<bean id="miDeviceDao" class="com.imxiaomai.dao.impl.MiDeviceDaoImpl" />
+	<bean id="provinceDao" class="com.imxiaomai.dao.impl.ProvinceDaoImpl" />
+	<bean id="regionDao" class="com.imxiaomai.dao.impl.RegionDaoImpl" />
+	<bean id="scorelistDao" class="com.imxiaomai.dao.impl.ScorelistDaoImpl" />
+	<bean id="smsRecordsDao" class="com.imxiaomai.dao.impl.SmsRecordsDaoImpl" />
+	<bean id="storeDao" class="com.imxiaomai.dao.impl.StoreDaoImpl" />
+	<bean id="storeExpressDao" class="com.imxiaomai.dao.impl.StoreExpressDaoImpl" />
+	<bean id="storeFavorableDao" class="com.imxiaomai.dao.impl.StoreFavorableDaoImpl" />
+	<bean id="userStatDao" class="com.imxiaomai.dao.impl.UserStatDaoImpl" />
+	<bean id="upgradeDao" class="com.imxiaomai.dao.impl.UpgradeDaoImpl" />
+	<bean id="upgradePloyDao" class="com.imxiaomai.dao.impl.UpgradePloyDaoImpl" />
+	<bean id="versionsDao" class="com.imxiaomai.dao.impl.VersionsDaoImpl" />
+	<bean id="wxBindUserDao" class="com.imxiaomai.dao.impl.WxBindUserDaoImpl" />
+	<bean id="userDao" class="com.imxiaomai.dao.impl.UserDaoImpl" />
+	<bean id="userPanshiDao" class="com.imxiaomai.dao.impl.UserPanshiDaoImpl" />
+	<bean id="userSourceDao" class="com.imxiaomai.dao.impl.UserSourceDaoImpl" />
+
+</beans>

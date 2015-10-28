@@ -1,0 +1,1243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.imxiaomai.persistence.mapper.StoreCollectNoCodeMapper" >
+  <resultMap id="BaseResultMap" type="com.imxiaomai.persistence.domain.StoreCollectNoCode" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="school_name" property="schoolName" jdbcType="VARCHAR" />
+    <result column="store_name" property="storeName" jdbcType="VARCHAR" />
+    <result column="store_address" property="storeAddress" jdbcType="VARCHAR" />
+    <result column="operate_type" property="operateType" jdbcType="TINYINT" />
+    <result column="region_id" property="regionId" jdbcType="INTEGER" />
+    <result column="province_id" property="provinceId" jdbcType="INTEGER" />
+    <result column="city_id" property="cityId" jdbcType="INTEGER" />
+    <result column="store_space" property="storeSpace" jdbcType="INTEGER" />
+    <result column="store_wide" property="storeWide" jdbcType="INTEGER" />
+    <result column="building_storey" property="buildingStorey" jdbcType="INTEGER" />
+    <result column="store_landlord" property="storeLandlord" jdbcType="TINYINT" />
+    <result column="store_sign" property="storeSign" jdbcType="VARCHAR" />
+    <result column="store_leader" property="storeLeader" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="e_mail" property="eMail" jdbcType="VARCHAR" />
+    <result column="basic_decorate" property="basicDecorate" jdbcType="VARCHAR" />
+    <result column="need_decorate" property="needDecorate" jdbcType="TINYINT" />
+    <result column="decorate_purpose" property="decoratePurpose" jdbcType="VARCHAR" />
+    <result column="expect_fee" property="expectFee" jdbcType="INTEGER" />
+    <result column="basic_staff_num" property="basicStaffNum" jdbcType="INTEGER" />
+    <result column="need_staff" property="needStaff" jdbcType="TINYINT" />
+    <result column="staff_purpose" property="staffPurpose" jdbcType="VARCHAR" />
+    <result column="expect_staff_num" property="expectStaffNum" jdbcType="INTEGER" />
+    <result column="compute_num" property="computeNum" jdbcType="INTEGER" />
+    <result column="bike_num" property="bikeNum" jdbcType="INTEGER" />
+    <result column="phone_num" property="phoneNum" jdbcType="INTEGER" />
+    <result column="baqiang_num" property="baqiangNum" jdbcType="INTEGER" />
+    <result column="storage_num" property="storageNum" jdbcType="INTEGER" />
+    <result column="other_info" property="otherInfo" jdbcType="VARCHAR" />
+    <result column="need_device" property="needDevice" jdbcType="TINYINT" />
+    <result column="expect_compute_num" property="expectComputeNum" jdbcType="INTEGER" />
+    <result column="expect_bike_num" property="expectBikeNum" jdbcType="INTEGER" />
+    <result column="expect_phone_num" property="expectPhoneNum" jdbcType="INTEGER" />
+    <result column="expect_baqiang_num" property="expectBaqiangNum" jdbcType="INTEGER" />
+    <result column="expect_storage_num" property="expectStorageNum" jdbcType="INTEGER" />
+    <result column="expect_other_info" property="expectOtherInfo" jdbcType="VARCHAR" />
+    <result column="competitor_info" property="competitorInfo" jdbcType="VARCHAR" />
+    <result column="school_receive_retailer" property="schoolReceiveRetailer" jdbcType="VARCHAR" />
+    <result column="school_receive_express" property="schoolReceiveExpress" jdbcType="VARCHAR" />
+    <result column="school_dispatch_retailer" property="schoolDispatchRetailer" jdbcType="VARCHAR" />
+    <result column="school_dispatch_express" property="schoolDispatchExpress" jdbcType="VARCHAR" />
+    <result column="store_receive_retailer" property="storeReceiveRetailer" jdbcType="VARCHAR" />
+    <result column="store_receive_express" property="storeReceiveExpress" jdbcType="VARCHAR" />
+    <result column="store_dispatch_retailer" property="storeDispatchRetailer" jdbcType="VARCHAR" />
+    <result column="store_dispatch_express" property="storeDispatchExpress" jdbcType="VARCHAR" />
+    <result column="start_time" property="startTime" jdbcType="VARCHAR" />
+    <result column="end_time" property="endTime" jdbcType="VARCHAR" />
+    <result column="rent_fee" property="rentFee" jdbcType="INTEGER" />
+    <result column="transfer_fee" property="transferFee" jdbcType="INTEGER" />
+    <result column="deposit_fee" property="depositFee" jdbcType="INTEGER" />
+    <result column="other_fee" property="otherFee" jdbcType="VARCHAR" />
+    <result column="divide_model" property="divideModel" jdbcType="VARCHAR" />
+    <result column="profit_info" property="profitInfo" jdbcType="VARCHAR" />
+    <result column="school_door_picIds" property="schoolDoorPicids" jdbcType="VARCHAR" />
+    <result column="school_surround_picIds" property="schoolSurroundPicids" jdbcType="VARCHAR" />
+    <result column="store_door_picIds" property="storeDoorPicids" jdbcType="VARCHAR" />
+    <result column="store_inner_picIds" property="storeInnerPicids" jdbcType="VARCHAR" />
+    <result column="store_model_picIds" property="storeModelPicids" jdbcType="VARCHAR" />
+    <result column="other_picIds" property="otherPicids" jdbcType="VARCHAR" />
+    <result column="create_staff_id" property="createStaffId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="area_id" property="areaId" jdbcType="INTEGER" />
+    <result column="city_level" property="cityLevel" jdbcType="TINYINT" />
+    <result column="school_level" property="schoolLevel" jdbcType="TINYINT" />
+    <result column="school_person_num" property="schoolPersonNum" jdbcType="INTEGER" />
+    <result column="man_women" property="manWomen" jdbcType="VARCHAR" />
+    <result column="school_space" property="schoolSpace" jdbcType="INTEGER" />
+    <result column="update_staff_id" property="updateStaffId" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, school_name, store_name, store_address, operate_type, region_id, province_id, 
+    city_id, store_space, store_wide, building_storey, store_landlord, store_sign, store_leader, 
+    phone, e_mail, basic_decorate, need_decorate, decorate_purpose, expect_fee, basic_staff_num, 
+    need_staff, staff_purpose, expect_staff_num, compute_num, bike_num, phone_num, baqiang_num, 
+    storage_num, other_info, need_device, expect_compute_num, expect_bike_num, expect_phone_num, 
+    expect_baqiang_num, expect_storage_num, expect_other_info, competitor_info, school_receive_retailer, 
+    school_receive_express, school_dispatch_retailer, school_dispatch_express, store_receive_retailer, 
+    store_receive_express, store_dispatch_retailer, store_dispatch_express, start_time, 
+    end_time, rent_fee, transfer_fee, deposit_fee, other_fee, divide_model, profit_info, 
+    school_door_picIds, school_surround_picIds, store_door_picIds, store_inner_picIds, 
+    store_model_picIds, other_picIds, create_staff_id, create_time, area_id, city_level, 
+    school_level, school_person_num, man_women, school_space, update_staff_id, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.imxiaomai.persistence.domain.StoreCollectNoCodeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from store_collect_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from store_collect_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from store_collect_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.imxiaomai.persistence.domain.StoreCollectNoCodeExample" >
+    delete from store_collect_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.imxiaomai.persistence.domain.StoreCollectNoCode" >
+    insert into store_collect_info (id, school_name, store_name, 
+      store_address, operate_type, region_id, 
+      province_id, city_id, store_space, 
+      store_wide, building_storey, store_landlord, 
+      store_sign, store_leader, phone, 
+      e_mail, basic_decorate, need_decorate, 
+      decorate_purpose, expect_fee, basic_staff_num, 
+      need_staff, staff_purpose, expect_staff_num, 
+      compute_num, bike_num, phone_num, 
+      baqiang_num, storage_num, other_info, 
+      need_device, expect_compute_num, expect_bike_num, 
+      expect_phone_num, expect_baqiang_num, expect_storage_num, 
+      expect_other_info, competitor_info, school_receive_retailer, 
+      school_receive_express, school_dispatch_retailer, 
+      school_dispatch_express, store_receive_retailer, 
+      store_receive_express, store_dispatch_retailer, 
+      store_dispatch_express, start_time, end_time, 
+      rent_fee, transfer_fee, deposit_fee, 
+      other_fee, divide_model, profit_info, 
+      school_door_picIds, school_surround_picIds, 
+      store_door_picIds, store_inner_picIds, store_model_picIds, 
+      other_picIds, create_staff_id, create_time, 
+      area_id, city_level, school_level, 
+      school_person_num, man_women, school_space, 
+      update_staff_id, update_time)
+    values (#{id,jdbcType=INTEGER}, #{schoolName,jdbcType=VARCHAR}, #{storeName,jdbcType=VARCHAR}, 
+      #{storeAddress,jdbcType=VARCHAR}, #{operateType,jdbcType=TINYINT}, #{regionId,jdbcType=INTEGER}, 
+      #{provinceId,jdbcType=INTEGER}, #{cityId,jdbcType=INTEGER}, #{storeSpace,jdbcType=INTEGER}, 
+      #{storeWide,jdbcType=INTEGER}, #{buildingStorey,jdbcType=INTEGER}, #{storeLandlord,jdbcType=TINYINT}, 
+      #{storeSign,jdbcType=VARCHAR}, #{storeLeader,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{eMail,jdbcType=VARCHAR}, #{basicDecorate,jdbcType=VARCHAR}, #{needDecorate,jdbcType=TINYINT}, 
+      #{decoratePurpose,jdbcType=VARCHAR}, #{expectFee,jdbcType=INTEGER}, #{basicStaffNum,jdbcType=INTEGER}, 
+      #{needStaff,jdbcType=TINYINT}, #{staffPurpose,jdbcType=VARCHAR}, #{expectStaffNum,jdbcType=INTEGER}, 
+      #{computeNum,jdbcType=INTEGER}, #{bikeNum,jdbcType=INTEGER}, #{phoneNum,jdbcType=INTEGER}, 
+      #{baqiangNum,jdbcType=INTEGER}, #{storageNum,jdbcType=INTEGER}, #{otherInfo,jdbcType=VARCHAR}, 
+      #{needDevice,jdbcType=TINYINT}, #{expectComputeNum,jdbcType=INTEGER}, #{expectBikeNum,jdbcType=INTEGER}, 
+      #{expectPhoneNum,jdbcType=INTEGER}, #{expectBaqiangNum,jdbcType=INTEGER}, #{expectStorageNum,jdbcType=INTEGER}, 
+      #{expectOtherInfo,jdbcType=VARCHAR}, #{competitorInfo,jdbcType=VARCHAR}, #{schoolReceiveRetailer,jdbcType=VARCHAR}, 
+      #{schoolReceiveExpress,jdbcType=VARCHAR}, #{schoolDispatchRetailer,jdbcType=VARCHAR}, 
+      #{schoolDispatchExpress,jdbcType=VARCHAR}, #{storeReceiveRetailer,jdbcType=VARCHAR}, 
+      #{storeReceiveExpress,jdbcType=VARCHAR}, #{storeDispatchRetailer,jdbcType=VARCHAR}, 
+      #{storeDispatchExpress,jdbcType=VARCHAR}, #{startTime,jdbcType=VARCHAR}, #{endTime,jdbcType=VARCHAR}, 
+      #{rentFee,jdbcType=INTEGER}, #{transferFee,jdbcType=INTEGER}, #{depositFee,jdbcType=INTEGER}, 
+      #{otherFee,jdbcType=VARCHAR}, #{divideModel,jdbcType=VARCHAR}, #{profitInfo,jdbcType=VARCHAR}, 
+      #{schoolDoorPicids,jdbcType=VARCHAR}, #{schoolSurroundPicids,jdbcType=VARCHAR}, 
+      #{storeDoorPicids,jdbcType=VARCHAR}, #{storeInnerPicids,jdbcType=VARCHAR}, #{storeModelPicids,jdbcType=VARCHAR}, 
+      #{otherPicids,jdbcType=VARCHAR}, #{createStaffId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{areaId,jdbcType=INTEGER}, #{cityLevel,jdbcType=TINYINT}, #{schoolLevel,jdbcType=TINYINT}, 
+      #{schoolPersonNum,jdbcType=INTEGER}, #{manWomen,jdbcType=VARCHAR}, #{schoolSpace,jdbcType=INTEGER}, 
+      #{updateStaffId,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.imxiaomai.persistence.domain.StoreCollectNoCode" >
+    insert into store_collect_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="schoolName != null" >
+        school_name,
+      </if>
+      <if test="storeName != null" >
+        store_name,
+      </if>
+      <if test="storeAddress != null" >
+        store_address,
+      </if>
+      <if test="operateType != null" >
+        operate_type,
+      </if>
+      <if test="regionId != null" >
+        region_id,
+      </if>
+      <if test="provinceId != null" >
+        province_id,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="storeSpace != null" >
+        store_space,
+      </if>
+      <if test="storeWide != null" >
+        store_wide,
+      </if>
+      <if test="buildingStorey != null" >
+        building_storey,
+      </if>
+      <if test="storeLandlord != null" >
+        store_landlord,
+      </if>
+      <if test="storeSign != null" >
+        store_sign,
+      </if>
+      <if test="storeLeader != null" >
+        store_leader,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="eMail != null" >
+        e_mail,
+      </if>
+      <if test="basicDecorate != null" >
+        basic_decorate,
+      </if>
+      <if test="needDecorate != null" >
+        need_decorate,
+      </if>
+      <if test="decoratePurpose != null" >
+        decorate_purpose,
+      </if>
+      <if test="expectFee != null" >
+        expect_fee,
+      </if>
+      <if test="basicStaffNum != null" >
+        basic_staff_num,
+      </if>
+      <if test="needStaff != null" >
+        need_staff,
+      </if>
+      <if test="staffPurpose != null" >
+        staff_purpose,
+      </if>
+      <if test="expectStaffNum != null" >
+        expect_staff_num,
+      </if>
+      <if test="computeNum != null" >
+        compute_num,
+      </if>
+      <if test="bikeNum != null" >
+        bike_num,
+      </if>
+      <if test="phoneNum != null" >
+        phone_num,
+      </if>
+      <if test="baqiangNum != null" >
+        baqiang_num,
+      </if>
+      <if test="storageNum != null" >
+        storage_num,
+      </if>
+      <if test="otherInfo != null" >
+        other_info,
+      </if>
+      <if test="needDevice != null" >
+        need_device,
+      </if>
+      <if test="expectComputeNum != null" >
+        expect_compute_num,
+      </if>
+      <if test="expectBikeNum != null" >
+        expect_bike_num,
+      </if>
+      <if test="expectPhoneNum != null" >
+        expect_phone_num,
+      </if>
+      <if test="expectBaqiangNum != null" >
+        expect_baqiang_num,
+      </if>
+      <if test="expectStorageNum != null" >
+        expect_storage_num,
+      </if>
+      <if test="expectOtherInfo != null" >
+        expect_other_info,
+      </if>
+      <if test="competitorInfo != null" >
+        competitor_info,
+      </if>
+      <if test="schoolReceiveRetailer != null" >
+        school_receive_retailer,
+      </if>
+      <if test="schoolReceiveExpress != null" >
+        school_receive_express,
+      </if>
+      <if test="schoolDispatchRetailer != null" >
+        school_dispatch_retailer,
+      </if>
+      <if test="schoolDispatchExpress != null" >
+        school_dispatch_express,
+      </if>
+      <if test="storeReceiveRetailer != null" >
+        store_receive_retailer,
+      </if>
+      <if test="storeReceiveExpress != null" >
+        store_receive_express,
+      </if>
+      <if test="storeDispatchRetailer != null" >
+        store_dispatch_retailer,
+      </if>
+      <if test="storeDispatchExpress != null" >
+        store_dispatch_express,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="rentFee != null" >
+        rent_fee,
+      </if>
+      <if test="transferFee != null" >
+        transfer_fee,
+      </if>
+      <if test="depositFee != null" >
+        deposit_fee,
+      </if>
+      <if test="otherFee != null" >
+        other_fee,
+      </if>
+      <if test="divideModel != null" >
+        divide_model,
+      </if>
+      <if test="profitInfo != null" >
+        profit_info,
+      </if>
+      <if test="schoolDoorPicids != null" >
+        school_door_picIds,
+      </if>
+      <if test="schoolSurroundPicids != null" >
+        school_surround_picIds,
+      </if>
+      <if test="storeDoorPicids != null" >
+        store_door_picIds,
+      </if>
+      <if test="storeInnerPicids != null" >
+        store_inner_picIds,
+      </if>
+      <if test="storeModelPicids != null" >
+        store_model_picIds,
+      </if>
+      <if test="otherPicids != null" >
+        other_picIds,
+      </if>
+      <if test="createStaffId != null" >
+        create_staff_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="cityLevel != null" >
+        city_level,
+      </if>
+      <if test="schoolLevel != null" >
+        school_level,
+      </if>
+      <if test="schoolPersonNum != null" >
+        school_person_num,
+      </if>
+      <if test="manWomen != null" >
+        man_women,
+      </if>
+      <if test="schoolSpace != null" >
+        school_space,
+      </if>
+      <if test="updateStaffId != null" >
+        update_staff_id,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="schoolName != null" >
+        #{schoolName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeName != null" >
+        #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeAddress != null" >
+        #{storeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="operateType != null" >
+        #{operateType,jdbcType=TINYINT},
+      </if>
+      <if test="regionId != null" >
+        #{regionId,jdbcType=INTEGER},
+      </if>
+      <if test="provinceId != null" >
+        #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="storeSpace != null" >
+        #{storeSpace,jdbcType=INTEGER},
+      </if>
+      <if test="storeWide != null" >
+        #{storeWide,jdbcType=INTEGER},
+      </if>
+      <if test="buildingStorey != null" >
+        #{buildingStorey,jdbcType=INTEGER},
+      </if>
+      <if test="storeLandlord != null" >
+        #{storeLandlord,jdbcType=TINYINT},
+      </if>
+      <if test="storeSign != null" >
+        #{storeSign,jdbcType=VARCHAR},
+      </if>
+      <if test="storeLeader != null" >
+        #{storeLeader,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="eMail != null" >
+        #{eMail,jdbcType=VARCHAR},
+      </if>
+      <if test="basicDecorate != null" >
+        #{basicDecorate,jdbcType=VARCHAR},
+      </if>
+      <if test="needDecorate != null" >
+        #{needDecorate,jdbcType=TINYINT},
+      </if>
+      <if test="decoratePurpose != null" >
+        #{decoratePurpose,jdbcType=VARCHAR},
+      </if>
+      <if test="expectFee != null" >
+        #{expectFee,jdbcType=INTEGER},
+      </if>
+      <if test="basicStaffNum != null" >
+        #{basicStaffNum,jdbcType=INTEGER},
+      </if>
+      <if test="needStaff != null" >
+        #{needStaff,jdbcType=TINYINT},
+      </if>
+      <if test="staffPurpose != null" >
+        #{staffPurpose,jdbcType=VARCHAR},
+      </if>
+      <if test="expectStaffNum != null" >
+        #{expectStaffNum,jdbcType=INTEGER},
+      </if>
+      <if test="computeNum != null" >
+        #{computeNum,jdbcType=INTEGER},
+      </if>
+      <if test="bikeNum != null" >
+        #{bikeNum,jdbcType=INTEGER},
+      </if>
+      <if test="phoneNum != null" >
+        #{phoneNum,jdbcType=INTEGER},
+      </if>
+      <if test="baqiangNum != null" >
+        #{baqiangNum,jdbcType=INTEGER},
+      </if>
+      <if test="storageNum != null" >
+        #{storageNum,jdbcType=INTEGER},
+      </if>
+      <if test="otherInfo != null" >
+        #{otherInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="needDevice != null" >
+        #{needDevice,jdbcType=TINYINT},
+      </if>
+      <if test="expectComputeNum != null" >
+        #{expectComputeNum,jdbcType=INTEGER},
+      </if>
+      <if test="expectBikeNum != null" >
+        #{expectBikeNum,jdbcType=INTEGER},
+      </if>
+      <if test="expectPhoneNum != null" >
+        #{expectPhoneNum,jdbcType=INTEGER},
+      </if>
+      <if test="expectBaqiangNum != null" >
+        #{expectBaqiangNum,jdbcType=INTEGER},
+      </if>
+      <if test="expectStorageNum != null" >
+        #{expectStorageNum,jdbcType=INTEGER},
+      </if>
+      <if test="expectOtherInfo != null" >
+        #{expectOtherInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="competitorInfo != null" >
+        #{competitorInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolReceiveRetailer != null" >
+        #{schoolReceiveRetailer,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolReceiveExpress != null" >
+        #{schoolReceiveExpress,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolDispatchRetailer != null" >
+        #{schoolDispatchRetailer,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolDispatchExpress != null" >
+        #{schoolDispatchExpress,jdbcType=VARCHAR},
+      </if>
+      <if test="storeReceiveRetailer != null" >
+        #{storeReceiveRetailer,jdbcType=VARCHAR},
+      </if>
+      <if test="storeReceiveExpress != null" >
+        #{storeReceiveExpress,jdbcType=VARCHAR},
+      </if>
+      <if test="storeDispatchRetailer != null" >
+        #{storeDispatchRetailer,jdbcType=VARCHAR},
+      </if>
+      <if test="storeDispatchExpress != null" >
+        #{storeDispatchExpress,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="rentFee != null" >
+        #{rentFee,jdbcType=INTEGER},
+      </if>
+      <if test="transferFee != null" >
+        #{transferFee,jdbcType=INTEGER},
+      </if>
+      <if test="depositFee != null" >
+        #{depositFee,jdbcType=INTEGER},
+      </if>
+      <if test="otherFee != null" >
+        #{otherFee,jdbcType=VARCHAR},
+      </if>
+      <if test="divideModel != null" >
+        #{divideModel,jdbcType=VARCHAR},
+      </if>
+      <if test="profitInfo != null" >
+        #{profitInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolDoorPicids != null" >
+        #{schoolDoorPicids,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolSurroundPicids != null" >
+        #{schoolSurroundPicids,jdbcType=VARCHAR},
+      </if>
+      <if test="storeDoorPicids != null" >
+        #{storeDoorPicids,jdbcType=VARCHAR},
+      </if>
+      <if test="storeInnerPicids != null" >
+        #{storeInnerPicids,jdbcType=VARCHAR},
+      </if>
+      <if test="storeModelPicids != null" >
+        #{storeModelPicids,jdbcType=VARCHAR},
+      </if>
+      <if test="otherPicids != null" >
+        #{otherPicids,jdbcType=VARCHAR},
+      </if>
+      <if test="createStaffId != null" >
+        #{createStaffId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="cityLevel != null" >
+        #{cityLevel,jdbcType=TINYINT},
+      </if>
+      <if test="schoolLevel != null" >
+        #{schoolLevel,jdbcType=TINYINT},
+      </if>
+      <if test="schoolPersonNum != null" >
+        #{schoolPersonNum,jdbcType=INTEGER},
+      </if>
+      <if test="manWomen != null" >
+        #{manWomen,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolSpace != null" >
+        #{schoolSpace,jdbcType=INTEGER},
+      </if>
+      <if test="updateStaffId != null" >
+        #{updateStaffId,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.imxiaomai.persistence.domain.StoreCollectNoCodeExample" resultType="java.lang.Integer" >
+    select count(*) from store_collect_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update store_collect_info
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.schoolName != null" >
+        school_name = #{record.schoolName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.storeName != null" >
+        store_name = #{record.storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.storeAddress != null" >
+        store_address = #{record.storeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operateType != null" >
+        operate_type = #{record.operateType,jdbcType=TINYINT},
+      </if>
+      <if test="record.regionId != null" >
+        region_id = #{record.regionId,jdbcType=INTEGER},
+      </if>
+      <if test="record.provinceId != null" >
+        province_id = #{record.provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="record.cityId != null" >
+        city_id = #{record.cityId,jdbcType=INTEGER},
+      </if>
+      <if test="record.storeSpace != null" >
+        store_space = #{record.storeSpace,jdbcType=INTEGER},
+      </if>
+      <if test="record.storeWide != null" >
+        store_wide = #{record.storeWide,jdbcType=INTEGER},
+      </if>
+      <if test="record.buildingStorey != null" >
+        building_storey = #{record.buildingStorey,jdbcType=INTEGER},
+      </if>
+      <if test="record.storeLandlord != null" >
+        store_landlord = #{record.storeLandlord,jdbcType=TINYINT},
+      </if>
+      <if test="record.storeSign != null" >
+        store_sign = #{record.storeSign,jdbcType=VARCHAR},
+      </if>
+      <if test="record.storeLeader != null" >
+        store_leader = #{record.storeLeader,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eMail != null" >
+        e_mail = #{record.eMail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.basicDecorate != null" >
+        basic_decorate = #{record.basicDecorate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.needDecorate != null" >
+        need_decorate = #{record.needDecorate,jdbcType=TINYINT},
+      </if>
+      <if test="record.decoratePurpose != null" >
+        decorate_purpose = #{record.decoratePurpose,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expectFee != null" >
+        expect_fee = #{record.expectFee,jdbcType=INTEGER},
+      </if>
+      <if test="record.basicStaffNum != null" >
+        basic_staff_num = #{record.basicStaffNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.needStaff != null" >
+        need_staff = #{record.needStaff,jdbcType=TINYINT},
+      </if>
+      <if test="record.staffPurpose != null" >
+        staff_purpose = #{record.staffPurpose,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expectStaffNum != null" >
+        expect_staff_num = #{record.expectStaffNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.computeNum != null" >
+        compute_num = #{record.computeNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.bikeNum != null" >
+        bike_num = #{record.bikeNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.phoneNum != null" >
+        phone_num = #{record.phoneNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.baqiangNum != null" >
+        baqiang_num = #{record.baqiangNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.storageNum != null" >
+        storage_num = #{record.storageNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.otherInfo != null" >
+        other_info = #{record.otherInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.needDevice != null" >
+        need_device = #{record.needDevice,jdbcType=TINYINT},
+      </if>
+      <if test="record.expectComputeNum != null" >
+        expect_compute_num = #{record.expectComputeNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.expectBikeNum != null" >
+        expect_bike_num = #{record.expectBikeNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.expectPhoneNum != null" >
+        expect_phone_num = #{record.expectPhoneNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.expectBaqiangNum != null" >
+        expect_baqiang_num = #{record.expectBaqiangNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.expectStorageNum != null" >
+        expect_storage_num = #{record.expectStorageNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.expectOtherInfo != null" >
+        expect_other_info = #{record.expectOtherInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.competitorInfo != null" >
+        competitor_info = #{record.competitorInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.schoolReceiveRetailer != null" >
+        school_receive_retailer = #{record.schoolReceiveRetailer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.schoolReceiveExpress != null" >
+        school_receive_express = #{record.schoolReceiveExpress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.schoolDispatchRetailer != null" >
+        school_dispatch_retailer = #{record.schoolDispatchRetailer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.schoolDispatchExpress != null" >
+        school_dispatch_express = #{record.schoolDispatchExpress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.storeReceiveRetailer != null" >
+        store_receive_retailer = #{record.storeReceiveRetailer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.storeReceiveExpress != null" >
+        store_receive_express = #{record.storeReceiveExpress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.storeDispatchRetailer != null" >
+        store_dispatch_retailer = #{record.storeDispatchRetailer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.storeDispatchExpress != null" >
+        store_dispatch_express = #{record.storeDispatchExpress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startTime != null" >
+        start_time = #{record.startTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.endTime != null" >
+        end_time = #{record.endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rentFee != null" >
+        rent_fee = #{record.rentFee,jdbcType=INTEGER},
+      </if>
+      <if test="record.transferFee != null" >
+        transfer_fee = #{record.transferFee,jdbcType=INTEGER},
+      </if>
+      <if test="record.depositFee != null" >
+        deposit_fee = #{record.depositFee,jdbcType=INTEGER},
+      </if>
+      <if test="record.otherFee != null" >
+        other_fee = #{record.otherFee,jdbcType=VARCHAR},
+      </if>
+      <if test="record.divideModel != null" >
+        divide_model = #{record.divideModel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.profitInfo != null" >
+        profit_info = #{record.profitInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.schoolDoorPicids != null" >
+        school_door_picIds = #{record.schoolDoorPicids,jdbcType=VARCHAR},
+      </if>
+      <if test="record.schoolSurroundPicids != null" >
+        school_surround_picIds = #{record.schoolSurroundPicids,jdbcType=VARCHAR},
+      </if>
+      <if test="record.storeDoorPicids != null" >
+        store_door_picIds = #{record.storeDoorPicids,jdbcType=VARCHAR},
+      </if>
+      <if test="record.storeInnerPicids != null" >
+        store_inner_picIds = #{record.storeInnerPicids,jdbcType=VARCHAR},
+      </if>
+      <if test="record.storeModelPicids != null" >
+        store_model_picIds = #{record.storeModelPicids,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherPicids != null" >
+        other_picIds = #{record.otherPicids,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createStaffId != null" >
+        create_staff_id = #{record.createStaffId,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.areaId != null" >
+        area_id = #{record.areaId,jdbcType=INTEGER},
+      </if>
+      <if test="record.cityLevel != null" >
+        city_level = #{record.cityLevel,jdbcType=TINYINT},
+      </if>
+      <if test="record.schoolLevel != null" >
+        school_level = #{record.schoolLevel,jdbcType=TINYINT},
+      </if>
+      <if test="record.schoolPersonNum != null" >
+        school_person_num = #{record.schoolPersonNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.manWomen != null" >
+        man_women = #{record.manWomen,jdbcType=VARCHAR},
+      </if>
+      <if test="record.schoolSpace != null" >
+        school_space = #{record.schoolSpace,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateStaffId != null" >
+        update_staff_id = #{record.updateStaffId,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update store_collect_info
+    set id = #{record.id,jdbcType=INTEGER},
+      school_name = #{record.schoolName,jdbcType=VARCHAR},
+      store_name = #{record.storeName,jdbcType=VARCHAR},
+      store_address = #{record.storeAddress,jdbcType=VARCHAR},
+      operate_type = #{record.operateType,jdbcType=TINYINT},
+      region_id = #{record.regionId,jdbcType=INTEGER},
+      province_id = #{record.provinceId,jdbcType=INTEGER},
+      city_id = #{record.cityId,jdbcType=INTEGER},
+      store_space = #{record.storeSpace,jdbcType=INTEGER},
+      store_wide = #{record.storeWide,jdbcType=INTEGER},
+      building_storey = #{record.buildingStorey,jdbcType=INTEGER},
+      store_landlord = #{record.storeLandlord,jdbcType=TINYINT},
+      store_sign = #{record.storeSign,jdbcType=VARCHAR},
+      store_leader = #{record.storeLeader,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      e_mail = #{record.eMail,jdbcType=VARCHAR},
+      basic_decorate = #{record.basicDecorate,jdbcType=VARCHAR},
+      need_decorate = #{record.needDecorate,jdbcType=TINYINT},
+      decorate_purpose = #{record.decoratePurpose,jdbcType=VARCHAR},
+      expect_fee = #{record.expectFee,jdbcType=INTEGER},
+      basic_staff_num = #{record.basicStaffNum,jdbcType=INTEGER},
+      need_staff = #{record.needStaff,jdbcType=TINYINT},
+      staff_purpose = #{record.staffPurpose,jdbcType=VARCHAR},
+      expect_staff_num = #{record.expectStaffNum,jdbcType=INTEGER},
+      compute_num = #{record.computeNum,jdbcType=INTEGER},
+      bike_num = #{record.bikeNum,jdbcType=INTEGER},
+      phone_num = #{record.phoneNum,jdbcType=INTEGER},
+      baqiang_num = #{record.baqiangNum,jdbcType=INTEGER},
+      storage_num = #{record.storageNum,jdbcType=INTEGER},
+      other_info = #{record.otherInfo,jdbcType=VARCHAR},
+      need_device = #{record.needDevice,jdbcType=TINYINT},
+      expect_compute_num = #{record.expectComputeNum,jdbcType=INTEGER},
+      expect_bike_num = #{record.expectBikeNum,jdbcType=INTEGER},
+      expect_phone_num = #{record.expectPhoneNum,jdbcType=INTEGER},
+      expect_baqiang_num = #{record.expectBaqiangNum,jdbcType=INTEGER},
+      expect_storage_num = #{record.expectStorageNum,jdbcType=INTEGER},
+      expect_other_info = #{record.expectOtherInfo,jdbcType=VARCHAR},
+      competitor_info = #{record.competitorInfo,jdbcType=VARCHAR},
+      school_receive_retailer = #{record.schoolReceiveRetailer,jdbcType=VARCHAR},
+      school_receive_express = #{record.schoolReceiveExpress,jdbcType=VARCHAR},
+      school_dispatch_retailer = #{record.schoolDispatchRetailer,jdbcType=VARCHAR},
+      school_dispatch_express = #{record.schoolDispatchExpress,jdbcType=VARCHAR},
+      store_receive_retailer = #{record.storeReceiveRetailer,jdbcType=VARCHAR},
+      store_receive_express = #{record.storeReceiveExpress,jdbcType=VARCHAR},
+      store_dispatch_retailer = #{record.storeDispatchRetailer,jdbcType=VARCHAR},
+      store_dispatch_express = #{record.storeDispatchExpress,jdbcType=VARCHAR},
+      start_time = #{record.startTime,jdbcType=VARCHAR},
+      end_time = #{record.endTime,jdbcType=VARCHAR},
+      rent_fee = #{record.rentFee,jdbcType=INTEGER},
+      transfer_fee = #{record.transferFee,jdbcType=INTEGER},
+      deposit_fee = #{record.depositFee,jdbcType=INTEGER},
+      other_fee = #{record.otherFee,jdbcType=VARCHAR},
+      divide_model = #{record.divideModel,jdbcType=VARCHAR},
+      profit_info = #{record.profitInfo,jdbcType=VARCHAR},
+      school_door_picIds = #{record.schoolDoorPicids,jdbcType=VARCHAR},
+      school_surround_picIds = #{record.schoolSurroundPicids,jdbcType=VARCHAR},
+      store_door_picIds = #{record.storeDoorPicids,jdbcType=VARCHAR},
+      store_inner_picIds = #{record.storeInnerPicids,jdbcType=VARCHAR},
+      store_model_picIds = #{record.storeModelPicids,jdbcType=VARCHAR},
+      other_picIds = #{record.otherPicids,jdbcType=VARCHAR},
+      create_staff_id = #{record.createStaffId,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      area_id = #{record.areaId,jdbcType=INTEGER},
+      city_level = #{record.cityLevel,jdbcType=TINYINT},
+      school_level = #{record.schoolLevel,jdbcType=TINYINT},
+      school_person_num = #{record.schoolPersonNum,jdbcType=INTEGER},
+      man_women = #{record.manWomen,jdbcType=VARCHAR},
+      school_space = #{record.schoolSpace,jdbcType=INTEGER},
+      update_staff_id = #{record.updateStaffId,jdbcType=INTEGER},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.imxiaomai.persistence.domain.StoreCollectNoCode" >
+    update store_collect_info
+    <set >
+      <if test="schoolName != null" >
+        school_name = #{schoolName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeName != null" >
+        store_name = #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeAddress != null" >
+        store_address = #{storeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="operateType != null" >
+        operate_type = #{operateType,jdbcType=TINYINT},
+      </if>
+      <if test="regionId != null" >
+        region_id = #{regionId,jdbcType=INTEGER},
+      </if>
+      <if test="provinceId != null" >
+        province_id = #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="storeSpace != null" >
+        store_space = #{storeSpace,jdbcType=INTEGER},
+      </if>
+      <if test="storeWide != null" >
+        store_wide = #{storeWide,jdbcType=INTEGER},
+      </if>
+      <if test="buildingStorey != null" >
+        building_storey = #{buildingStorey,jdbcType=INTEGER},
+      </if>
+      <if test="storeLandlord != null" >
+        store_landlord = #{storeLandlord,jdbcType=TINYINT},
+      </if>
+      <if test="storeSign != null" >
+        store_sign = #{storeSign,jdbcType=VARCHAR},
+      </if>
+      <if test="storeLeader != null" >
+        store_leader = #{storeLeader,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="eMail != null" >
+        e_mail = #{eMail,jdbcType=VARCHAR},
+      </if>
+      <if test="basicDecorate != null" >
+        basic_decorate = #{basicDecorate,jdbcType=VARCHAR},
+      </if>
+      <if test="needDecorate != null" >
+        need_decorate = #{needDecorate,jdbcType=TINYINT},
+      </if>
+      <if test="decoratePurpose != null" >
+        decorate_purpose = #{decoratePurpose,jdbcType=VARCHAR},
+      </if>
+      <if test="expectFee != null" >
+        expect_fee = #{expectFee,jdbcType=INTEGER},
+      </if>
+      <if test="basicStaffNum != null" >
+        basic_staff_num = #{basicStaffNum,jdbcType=INTEGER},
+      </if>
+      <if test="needStaff != null" >
+        need_staff = #{needStaff,jdbcType=TINYINT},
+      </if>
+      <if test="staffPurpose != null" >
+        staff_purpose = #{staffPurpose,jdbcType=VARCHAR},
+      </if>
+      <if test="expectStaffNum != null" >
+        expect_staff_num = #{expectStaffNum,jdbcType=INTEGER},
+      </if>
+      <if test="computeNum != null" >
+        compute_num = #{computeNum,jdbcType=INTEGER},
+      </if>
+      <if test="bikeNum != null" >
+        bike_num = #{bikeNum,jdbcType=INTEGER},
+      </if>
+      <if test="phoneNum != null" >
+        phone_num = #{phoneNum,jdbcType=INTEGER},
+      </if>
+      <if test="baqiangNum != null" >
+        baqiang_num = #{baqiangNum,jdbcType=INTEGER},
+      </if>
+      <if test="storageNum != null" >
+        storage_num = #{storageNum,jdbcType=INTEGER},
+      </if>
+      <if test="otherInfo != null" >
+        other_info = #{otherInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="needDevice != null" >
+        need_device = #{needDevice,jdbcType=TINYINT},
+      </if>
+      <if test="expectComputeNum != null" >
+        expect_compute_num = #{expectComputeNum,jdbcType=INTEGER},
+      </if>
+      <if test="expectBikeNum != null" >
+        expect_bike_num = #{expectBikeNum,jdbcType=INTEGER},
+      </if>
+      <if test="expectPhoneNum != null" >
+        expect_phone_num = #{expectPhoneNum,jdbcType=INTEGER},
+      </if>
+      <if test="expectBaqiangNum != null" >
+        expect_baqiang_num = #{expectBaqiangNum,jdbcType=INTEGER},
+      </if>
+      <if test="expectStorageNum != null" >
+        expect_storage_num = #{expectStorageNum,jdbcType=INTEGER},
+      </if>
+      <if test="expectOtherInfo != null" >
+        expect_other_info = #{expectOtherInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="competitorInfo != null" >
+        competitor_info = #{competitorInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolReceiveRetailer != null" >
+        school_receive_retailer = #{schoolReceiveRetailer,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolReceiveExpress != null" >
+        school_receive_express = #{schoolReceiveExpress,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolDispatchRetailer != null" >
+        school_dispatch_retailer = #{schoolDispatchRetailer,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolDispatchExpress != null" >
+        school_dispatch_express = #{schoolDispatchExpress,jdbcType=VARCHAR},
+      </if>
+      <if test="storeReceiveRetailer != null" >
+        store_receive_retailer = #{storeReceiveRetailer,jdbcType=VARCHAR},
+      </if>
+      <if test="storeReceiveExpress != null" >
+        store_receive_express = #{storeReceiveExpress,jdbcType=VARCHAR},
+      </if>
+      <if test="storeDispatchRetailer != null" >
+        store_dispatch_retailer = #{storeDispatchRetailer,jdbcType=VARCHAR},
+      </if>
+      <if test="storeDispatchExpress != null" >
+        store_dispatch_express = #{storeDispatchExpress,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="rentFee != null" >
+        rent_fee = #{rentFee,jdbcType=INTEGER},
+      </if>
+      <if test="transferFee != null" >
+        transfer_fee = #{transferFee,jdbcType=INTEGER},
+      </if>
+      <if test="depositFee != null" >
+        deposit_fee = #{depositFee,jdbcType=INTEGER},
+      </if>
+      <if test="otherFee != null" >
+        other_fee = #{otherFee,jdbcType=VARCHAR},
+      </if>
+      <if test="divideModel != null" >
+        divide_model = #{divideModel,jdbcType=VARCHAR},
+      </if>
+      <if test="profitInfo != null" >
+        profit_info = #{profitInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolDoorPicids != null" >
+        school_door_picIds = #{schoolDoorPicids,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolSurroundPicids != null" >
+        school_surround_picIds = #{schoolSurroundPicids,jdbcType=VARCHAR},
+      </if>
+      <if test="storeDoorPicids != null" >
+        store_door_picIds = #{storeDoorPicids,jdbcType=VARCHAR},
+      </if>
+      <if test="storeInnerPicids != null" >
+        store_inner_picIds = #{storeInnerPicids,jdbcType=VARCHAR},
+      </if>
+      <if test="storeModelPicids != null" >
+        store_model_picIds = #{storeModelPicids,jdbcType=VARCHAR},
+      </if>
+      <if test="otherPicids != null" >
+        other_picIds = #{otherPicids,jdbcType=VARCHAR},
+      </if>
+      <if test="createStaffId != null" >
+        create_staff_id = #{createStaffId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="areaId != null" >
+        area_id = #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="cityLevel != null" >
+        city_level = #{cityLevel,jdbcType=TINYINT},
+      </if>
+      <if test="schoolLevel != null" >
+        school_level = #{schoolLevel,jdbcType=TINYINT},
+      </if>
+      <if test="schoolPersonNum != null" >
+        school_person_num = #{schoolPersonNum,jdbcType=INTEGER},
+      </if>
+      <if test="manWomen != null" >
+        man_women = #{manWomen,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolSpace != null" >
+        school_space = #{schoolSpace,jdbcType=INTEGER},
+      </if>
+      <if test="updateStaffId != null" >
+        update_staff_id = #{updateStaffId,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.imxiaomai.persistence.domain.StoreCollectNoCode" >
+    update store_collect_info
+    set school_name = #{schoolName,jdbcType=VARCHAR},
+      store_name = #{storeName,jdbcType=VARCHAR},
+      store_address = #{storeAddress,jdbcType=VARCHAR},
+      operate_type = #{operateType,jdbcType=TINYINT},
+      region_id = #{regionId,jdbcType=INTEGER},
+      province_id = #{provinceId,jdbcType=INTEGER},
+      city_id = #{cityId,jdbcType=INTEGER},
+      store_space = #{storeSpace,jdbcType=INTEGER},
+      store_wide = #{storeWide,jdbcType=INTEGER},
+      building_storey = #{buildingStorey,jdbcType=INTEGER},
+      store_landlord = #{storeLandlord,jdbcType=TINYINT},
+      store_sign = #{storeSign,jdbcType=VARCHAR},
+      store_leader = #{storeLeader,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      e_mail = #{eMail,jdbcType=VARCHAR},
+      basic_decorate = #{basicDecorate,jdbcType=VARCHAR},
+      need_decorate = #{needDecorate,jdbcType=TINYINT},
+      decorate_purpose = #{decoratePurpose,jdbcType=VARCHAR},
+      expect_fee = #{expectFee,jdbcType=INTEGER},
+      basic_staff_num = #{basicStaffNum,jdbcType=INTEGER},
+      need_staff = #{needStaff,jdbcType=TINYINT},
+      staff_purpose = #{staffPurpose,jdbcType=VARCHAR},
+      expect_staff_num = #{expectStaffNum,jdbcType=INTEGER},
+      compute_num = #{computeNum,jdbcType=INTEGER},
+      bike_num = #{bikeNum,jdbcType=INTEGER},
+      phone_num = #{phoneNum,jdbcType=INTEGER},
+      baqiang_num = #{baqiangNum,jdbcType=INTEGER},
+      storage_num = #{storageNum,jdbcType=INTEGER},
+      other_info = #{otherInfo,jdbcType=VARCHAR},
+      need_device = #{needDevice,jdbcType=TINYINT},
+      expect_compute_num = #{expectComputeNum,jdbcType=INTEGER},
+      expect_bike_num = #{expectBikeNum,jdbcType=INTEGER},
+      expect_phone_num = #{expectPhoneNum,jdbcType=INTEGER},
+      expect_baqiang_num = #{expectBaqiangNum,jdbcType=INTEGER},
+      expect_storage_num = #{expectStorageNum,jdbcType=INTEGER},
+      expect_other_info = #{expectOtherInfo,jdbcType=VARCHAR},
+      competitor_info = #{competitorInfo,jdbcType=VARCHAR},
+      school_receive_retailer = #{schoolReceiveRetailer,jdbcType=VARCHAR},
+      school_receive_express = #{schoolReceiveExpress,jdbcType=VARCHAR},
+      school_dispatch_retailer = #{schoolDispatchRetailer,jdbcType=VARCHAR},
+      school_dispatch_express = #{schoolDispatchExpress,jdbcType=VARCHAR},
+      store_receive_retailer = #{storeReceiveRetailer,jdbcType=VARCHAR},
+      store_receive_express = #{storeReceiveExpress,jdbcType=VARCHAR},
+      store_dispatch_retailer = #{storeDispatchRetailer,jdbcType=VARCHAR},
+      store_dispatch_express = #{storeDispatchExpress,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=VARCHAR},
+      end_time = #{endTime,jdbcType=VARCHAR},
+      rent_fee = #{rentFee,jdbcType=INTEGER},
+      transfer_fee = #{transferFee,jdbcType=INTEGER},
+      deposit_fee = #{depositFee,jdbcType=INTEGER},
+      other_fee = #{otherFee,jdbcType=VARCHAR},
+      divide_model = #{divideModel,jdbcType=VARCHAR},
+      profit_info = #{profitInfo,jdbcType=VARCHAR},
+      school_door_picIds = #{schoolDoorPicids,jdbcType=VARCHAR},
+      school_surround_picIds = #{schoolSurroundPicids,jdbcType=VARCHAR},
+      store_door_picIds = #{storeDoorPicids,jdbcType=VARCHAR},
+      store_inner_picIds = #{storeInnerPicids,jdbcType=VARCHAR},
+      store_model_picIds = #{storeModelPicids,jdbcType=VARCHAR},
+      other_picIds = #{otherPicids,jdbcType=VARCHAR},
+      create_staff_id = #{createStaffId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      area_id = #{areaId,jdbcType=INTEGER},
+      city_level = #{cityLevel,jdbcType=TINYINT},
+      school_level = #{schoolLevel,jdbcType=TINYINT},
+      school_person_num = #{schoolPersonNum,jdbcType=INTEGER},
+      man_women = #{manWomen,jdbcType=VARCHAR},
+      school_space = #{schoolSpace,jdbcType=INTEGER},
+      update_staff_id = #{updateStaffId,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

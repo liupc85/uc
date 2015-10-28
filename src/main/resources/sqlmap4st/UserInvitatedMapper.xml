@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.imxiaomai.persistence.mapper.UserInvitatedNoCodeMapper" >
+  <resultMap id="BaseResultMap" type="com.imxiaomai.persistence.domain.UserInvitatedNoCode" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="invitatedUserId" property="invitateduserid" jdbcType="INTEGER" />
+    <result column="userIdGold" property="useridgold" jdbcType="INTEGER" />
+    <result column="invitatedUserGold" property="invitatedusergold" jdbcType="INTEGER" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="isAdd" property="isadd" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="outId" property="outid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, userId, invitatedUserId, userIdGold, invitatedUserGold, time, isAdd, type, outId
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.imxiaomai.persistence.domain.UserInvitatedNoCodeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from userInvitated
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from userInvitated
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from userInvitated
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.imxiaomai.persistence.domain.UserInvitatedNoCodeExample" >
+    delete from userInvitated
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.imxiaomai.persistence.domain.UserInvitatedNoCode" >
+    insert into userInvitated (id, userId, invitatedUserId, 
+      userIdGold, invitatedUserGold, time, 
+      isAdd, type, outId)
+    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{invitateduserid,jdbcType=INTEGER}, 
+      #{useridgold,jdbcType=INTEGER}, #{invitatedusergold,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}, 
+      #{isadd,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, #{outid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.imxiaomai.persistence.domain.UserInvitatedNoCode" >
+    insert into userInvitated
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="invitateduserid != null" >
+        invitatedUserId,
+      </if>
+      <if test="useridgold != null" >
+        userIdGold,
+      </if>
+      <if test="invitatedusergold != null" >
+        invitatedUserGold,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="isadd != null" >
+        isAdd,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="outid != null" >
+        outId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="invitateduserid != null" >
+        #{invitateduserid,jdbcType=INTEGER},
+      </if>
+      <if test="useridgold != null" >
+        #{useridgold,jdbcType=INTEGER},
+      </if>
+      <if test="invitatedusergold != null" >
+        #{invitatedusergold,jdbcType=INTEGER},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isadd != null" >
+        #{isadd,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="outid != null" >
+        #{outid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.imxiaomai.persistence.domain.UserInvitatedNoCodeExample" resultType="java.lang.Integer" >
+    select count(*) from userInvitated
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update userInvitated
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.userid != null" >
+        userId = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.invitateduserid != null" >
+        invitatedUserId = #{record.invitateduserid,jdbcType=INTEGER},
+      </if>
+      <if test="record.useridgold != null" >
+        userIdGold = #{record.useridgold,jdbcType=INTEGER},
+      </if>
+      <if test="record.invitatedusergold != null" >
+        invitatedUserGold = #{record.invitatedusergold,jdbcType=INTEGER},
+      </if>
+      <if test="record.time != null" >
+        time = #{record.time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isadd != null" >
+        isAdd = #{record.isadd,jdbcType=INTEGER},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.outid != null" >
+        outId = #{record.outid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update userInvitated
+    set id = #{record.id,jdbcType=INTEGER},
+      userId = #{record.userid,jdbcType=INTEGER},
+      invitatedUserId = #{record.invitateduserid,jdbcType=INTEGER},
+      userIdGold = #{record.useridgold,jdbcType=INTEGER},
+      invitatedUserGold = #{record.invitatedusergold,jdbcType=INTEGER},
+      time = #{record.time,jdbcType=TIMESTAMP},
+      isAdd = #{record.isadd,jdbcType=INTEGER},
+      type = #{record.type,jdbcType=VARCHAR},
+      outId = #{record.outid,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.imxiaomai.persistence.domain.UserInvitatedNoCode" >
+    update userInvitated
+    <set >
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="invitateduserid != null" >
+        invitatedUserId = #{invitateduserid,jdbcType=INTEGER},
+      </if>
+      <if test="useridgold != null" >
+        userIdGold = #{useridgold,jdbcType=INTEGER},
+      </if>
+      <if test="invitatedusergold != null" >
+        invitatedUserGold = #{invitatedusergold,jdbcType=INTEGER},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isadd != null" >
+        isAdd = #{isadd,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="outid != null" >
+        outId = #{outid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.imxiaomai.persistence.domain.UserInvitatedNoCode" >
+    update userInvitated
+    set userId = #{userid,jdbcType=INTEGER},
+      invitatedUserId = #{invitateduserid,jdbcType=INTEGER},
+      userIdGold = #{useridgold,jdbcType=INTEGER},
+      invitatedUserGold = #{invitatedusergold,jdbcType=INTEGER},
+      time = #{time,jdbcType=TIMESTAMP},
+      isAdd = #{isadd,jdbcType=INTEGER},
+      type = #{type,jdbcType=VARCHAR},
+      outId = #{outid,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

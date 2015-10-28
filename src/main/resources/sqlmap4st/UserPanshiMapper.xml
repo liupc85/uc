@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.imxiaomai.persistence.mapper.UserPanshiMapper" >
+  <resultMap id="BaseResultMap" type="com.imxiaomai.persistence.domain.UserPanshi" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="userName" property="userName" jdbcType="VARCHAR" />
+    <result column="realName" property="realName" jdbcType="VARCHAR" />
+    <result column="mobilePhone" property="mobilePhone" jdbcType="VARCHAR" />
+    <result column="userPwd" property="userPwd" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="token" property="token" jdbcType="VARCHAR" />
+    <result column="createTime" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="updateTime" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="validateLevel" property="validateLevel" jdbcType="INTEGER" />
+    <result column="privilege" property="privilege" jdbcType="VARCHAR" />
+  </resultMap>
+  
+    <sql id="Base_Column_List" >
+    	id, userName, realName, mobilePhone, userPwd, type, token, createTime, 
+    	updateTime, status, validateLevel, privilege
+  	</sql>
+  
+  
+  <insert id="insert" parameterType="com.imxiaomai.persistence.domain.UserPanshi" keyProperty="id" useGeneratedKeys="true">
+    insert into user_panshi
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+       <if test="userName != null">
+        userName,
+      </if>
+      <if test="realName != null">
+        realName,
+      </if>
+       <if test="mobilePhone != null">
+        mobilePhone,
+      </if>
+      <if test="userPwd != null">
+        userPwd,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="token != null">
+        token,
+      </if>
+      <if test="createTime != null">
+        createTime,
+      </if>
+      <if test="updateTime != null">
+        updateTime,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="validateLevel != null">
+        validateLevel,
+      </if>
+      <if test="privilege != null">
+        privilege,
+      </if>
+    </trim>
+
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null">
+        #{realName,jdbcType=VARCHAR},
+      </if>
+     <if test="mobilePhone != null">
+        #{mobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="userPwd != null">
+        #{userPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="token != null">
+        #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="validateLevel != null">
+        #{validateLevel,jdbcType=INTEGER},
+      </if>
+      <if test="privilege != null">
+        #{privilege,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <select id="verifyBaseUser"  parameterType="map"   resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_panshi
+    where 1=1 and userName=#{username} and userPwd = #{password}
+  </select>
+  
+  <select id="getById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_panshi 
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+ 
+ <select id="getByName" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_panshi 
+    where username = #{username}
+  </select>
+ 
+  <update id="updateById" parameterType="com.imxiaomai.persistence.domain.UserPanshi">
+    update user_panshi
+    <set>
+      <if test="userName != null">
+        userName = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null">
+        realName = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilePhone != null">
+        mobilePhone = #{mobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="userPwd != null">
+        userPwd = #{userPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="token != null">
+        token = #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        updateTime = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="validateLevel != null">
+        validateLevel = #{validateLevel,jdbcType=INTEGER},
+      </if>
+      <if test="privilege != null">
+        privilege = #{privilege,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+ 
+ 
+ <delete id="deleteById" parameterType="java.lang.Integer">
+    delete from user_panshi
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+ 
+ 
+ </mapper>

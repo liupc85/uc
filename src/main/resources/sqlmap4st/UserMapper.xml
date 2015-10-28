@@ -1,0 +1,630 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.imxiaomai.persistence.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.imxiaomai.persistence.domain.User" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="mobilePhone" property="mobilephone" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="token" property="token" jdbcType="VARCHAR" />
+    <result column="collegeId" property="collegeid" jdbcType="INTEGER" />
+    <result column="realName" property="realname" jdbcType="VARCHAR" />
+    <result column="userName" property="username" jdbcType="VARCHAR" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="TINYINT" />
+    <result column="birthday" property="birthday" jdbcType="TIMESTAMP" />
+    <result column="phoneValidate" property="phonevalidate" jdbcType="TINYINT" />
+    <result column="emailValidate" property="emailvalidate" jdbcType="TINYINT" />
+    <result column="source" property="source" jdbcType="INTEGER" />
+    <result column="isdel" property="isdel" jdbcType="TINYINT" />
+    <result column="ispre" property="ispre" jdbcType="TINYINT" />
+    <result column="updatePwdflag" property="updatePwdFlag" jdbcType="TINYINT" />
+    <result column="productId" property="productId" jdbcType="VARCHAR" />
+    <result column="randomId" property="randomId" jdbcType="VARCHAR" />
+    <result column="randomToken" property="randomToken" jdbcType="VARCHAR" />
+    <result column="tokenCreateTime" property="tokencreatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, mobilePhone, password, token, collegeId, realName, userName, createTime, updateTime,
+    email, sex, birthday, phoneValidate, emailValidate, source, isdel,ispre,updatePwdflag, 
+    productId, randomId,randomToken, tokenCreateTime
+  </sql>
+  
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.imxiaomai.persistence.domain.UserExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.imxiaomai.persistence.domain.UserExample" >
+    delete from user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.imxiaomai.persistence.domain.User" useGeneratedKeys="true" keyProperty="id">
+    insert into user (mobilePhone, password, 
+      token, collegeId, realName, 
+      userName, createTime, updateTime, 
+      email, sex, birthday, 
+      phoneValidate, emailValidate, source, 
+      isdel,ispre,updatePwdflag)
+    values (#{mobilephone,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{token,jdbcType=VARCHAR}, #{collegeid,jdbcType=INTEGER}, #{realname,jdbcType=VARCHAR}, 
+      #{username,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{email,jdbcType=VARCHAR}, #{sex,jdbcType=TINYINT}, #{birthday,jdbcType=TIMESTAMP}, 
+      #{phonevalidate,jdbcType=TINYINT}, #{emailvalidate,jdbcType=TINYINT}, #{source,jdbcType=INTEGER}, 
+      #{isdel,jdbcType=TINYINT},#{ispre,jdbcType=TINYINT},#{updatePwdFlag,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.imxiaomai.persistence.domain.User" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mobilephone != null" >
+        mobilePhone,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="token != null" >
+        token,
+      </if>
+      <if test="collegeid != null" >
+        collegeId,
+      </if>
+      <if test="realname != null" >
+        realName,
+      </if>
+      <if test="username != null" >
+        userName,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="phonevalidate != null" >
+        phoneValidate,
+      </if>
+      <if test="emailvalidate != null" >
+        emailValidate,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="isdel != null" >
+        isdel,
+      </if>
+      <if test="productId != null" >
+        productId,
+      </if>
+      <if test="randomId != null" >
+        randomId,
+      </if>
+      <if test="randomToken != null" >
+        randomToken,
+      </if>
+      <if test="tokencreatetime != null" >
+        tokenCreateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mobilephone != null" >
+        #{mobilephone,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null" >
+        #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="collegeid != null" >
+        #{collegeid,jdbcType=INTEGER},
+      </if>
+      <if test="realname != null" >
+        #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="phonevalidate != null" >
+        #{phonevalidate,jdbcType=TINYINT},
+      </if>
+      <if test="emailvalidate != null" >
+        #{emailvalidate,jdbcType=TINYINT},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=INTEGER},
+      </if>
+      <if test="isdel != null" >
+        #{isdel,jdbcType=TINYINT},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="randomId != null" >
+        #{randomId,jdbcType=VARCHAR},
+      </if>
+      <if test="randomToken != null" >
+        #{randomToken,jdbcType=VARCHAR},
+      </if>
+      <if test="tokencreatetime != null" >
+        #{tokencreatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.imxiaomai.persistence.domain.UserExample" resultType="java.lang.Integer" >
+    select count(*) from user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update user
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.mobilephone != null" >
+        mobilePhone = #{record.mobilephone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null" >
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.token != null" >
+        token = #{record.token,jdbcType=VARCHAR},
+      </if>
+      <if test="record.collegeid != null" >
+        collegeId = #{record.collegeid,jdbcType=INTEGER},
+      </if>
+      <if test="record.realname != null" >
+        realName = #{record.realname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.username != null" >
+        userName = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatetime != null" >
+        updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null" >
+        sex = #{record.sex,jdbcType=TINYINT},
+      </if>
+      <if test="record.birthday != null" >
+        birthday = #{record.birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.phonevalidate != null" >
+        phoneValidate = #{record.phonevalidate,jdbcType=TINYINT},
+      </if>
+      <if test="record.emailvalidate != null" >
+        emailValidate = #{record.emailvalidate,jdbcType=TINYINT},
+      </if>
+      <if test="record.source != null" >
+        source = #{record.source,jdbcType=INTEGER},
+      </if>
+      <if test="record.isdel != null" >
+        isdel = #{record.isdel,jdbcType=TINYINT},
+      </if>
+      <if test="record.productId != null" >
+        productId = #{record.productId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.randomId != null" >
+        randomId = #{record.randomId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.randomToken != null" >
+        randomToken = #{record.randomToken,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tokencreatetime != null" >
+        tokenCreateTime = #{record.tokencreatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update user
+    set id = #{record.id,jdbcType=INTEGER},
+      mobilePhone = #{record.mobilephone,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      token = #{record.token,jdbcType=VARCHAR},
+      collegeId = #{record.collegeid,jdbcType=INTEGER},
+      realName = #{record.realname,jdbcType=VARCHAR},
+      userName = #{record.username,jdbcType=VARCHAR},
+      createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
+      email = #{record.email,jdbcType=VARCHAR},
+      sex = #{record.sex,jdbcType=TINYINT},
+      birthday = #{record.birthday,jdbcType=TIMESTAMP},
+      phoneValidate = #{record.phonevalidate,jdbcType=TINYINT},
+      emailValidate = #{record.emailvalidate,jdbcType=TINYINT},
+      source = #{record.source,jdbcType=INTEGER},
+      isdel = #{record.isdel,jdbcType=TINYINT},
+      productId = #{record.productId,jdbcType=VARCHAR},
+      randomId = #{record.randomId,jdbcType=VARCHAR},
+      randomToken = #{record.randomToken,jdbcType=VARCHAR},
+      tokenCreateTime = #{record.tokencreatetime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.imxiaomai.persistence.domain.User" >
+    update user
+    <set >
+      <if test="mobilephone != null" >
+        mobilePhone = #{mobilephone,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null" >
+        token = #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="collegeid != null" >
+        collegeId = #{collegeid,jdbcType=INTEGER},
+      </if>
+      <if test="realname != null" >
+        realName = #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        userName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="phonevalidate != null" >
+        phoneValidate = #{phonevalidate,jdbcType=TINYINT},
+      </if>
+      <if test="emailvalidate != null" >
+        emailValidate = #{emailvalidate,jdbcType=TINYINT},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=INTEGER},
+      </if>
+      <if test="isdel != null" >
+        isdel = #{isdel,jdbcType=TINYINT},
+      </if>
+      <if test="productId != null" >
+        productId = #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="randomId != null" >
+        randomId = #{randomId,jdbcType=VARCHAR},
+      </if>
+      <if test="randomToken != null" >
+        randomToken = #{randomToken,jdbcType=VARCHAR},
+      </if>
+      <if test="tokencreatetime != null" >
+        tokenCreateTime = #{tokencreatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.imxiaomai.persistence.domain.User" >
+    update user
+    set mobilePhone = #{mobilephone,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      token = #{token,jdbcType=VARCHAR},
+      collegeId = #{collegeid,jdbcType=INTEGER},
+      realName = #{realname,jdbcType=VARCHAR},
+      userName = #{username,jdbcType=VARCHAR},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      email = #{email,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=TINYINT},
+      birthday = #{birthday,jdbcType=TIMESTAMP},
+      phoneValidate = #{phonevalidate,jdbcType=TINYINT},
+      emailValidate = #{emailvalidate,jdbcType=TINYINT},
+      source = #{source,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+  
+  <select id="getByCondition" resultMap="BaseResultMap" parameterType="com.imxiaomai.persistence.domain.User" >
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where 1=1
+     <if test="mobilephone != null and mobilephone != '' " >
+      and mobilePhone = #{mobilephone,jdbcType=VARCHAR}
+     </if>
+     <if test="password != null and password != '' " >
+       and password = #{password,jdbcType=VARCHAR}
+     </if>
+     <if test="token != null and token !='' " >
+       and token = #{token,jdbcType=VARCHAR}
+     </if>
+     limit 1
+  </select>
+  
+  <select id="getUsersByIds" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where 1=1
+    and userId  in 
+ 	<foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+    	#{item}
+     </foreach>
+  </select>
+  
+  <!--更新token、password不会和更新source同时出现  -->
+  <update id="updateSomeField" parameterType="com.imxiaomai.persistence.domain.User" >
+    update user
+    set
+    <if test="password != null and password !='' and token != null and token !='' " >
+        password = #{password,jdbcType=VARCHAR},
+      	token = #{token,jdbcType=VARCHAR}
+    </if>
+    
+    <if test="source != null and source !=0 " >
+      source = #{source,jdbcType=INTEGER}
+    </if>  
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateRandomToken" parameterType="com.imxiaomai.persistence.domain.User" >
+    update user
+    set randomId = #{randomId,jdbcType=VARCHAR},
+        productId = #{productId,jdbcType=VARCHAR},
+        randomToken = #{randomToken,jdbcType=VARCHAR},
+        tokenCreateTime = #{tokencreatetime,jdbcType=TIMESTAMP}
+    where mobilePhone = #{mobilephone,jdbcType=VARCHAR}
+  </update>
+  
+  
+
+  
+  <select id="count" resultType="java.lang.Integer" >
+    select count(*)
+    from user where 1=1
+  </select> 
+  
+  <select id="getByPage"  parameterType="map"   resultMap="BaseResultMap" >
+    select <include refid="Base_Column_List" />
+    from user where 1=1
+    limit ${start},${end}
+  </select>
+  
+  <update id="updateByPair" parameterType="map" statementType="STATEMENT">
+    update user set ${field} = ${value} where ${conditionName} = ${conditionValue}
+  </update>
+  
+  <select id="selectByPair" parameterType="map" statementType="STATEMENT" resultMap="BaseResultMap" >
+   	select <include refid="Base_Column_List" />
+    from user where 1=1
+    and ${conditionName} = ${conditionValue}
+    limit 1
+  </select>
+  
+  
+  <resultMap id="ExtraResultMap" type="com.imxiaomai.persistence.domain.ExtraUser" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="mobilePhone" property="mobilephone" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="token" property="token" jdbcType="VARCHAR" />
+    <result column="collegeId" property="collegeid" jdbcType="INTEGER" />
+    <result column="realName" property="realname" jdbcType="VARCHAR" />
+    <result column="userName" property="username" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="TINYINT" />
+    <result column="ispre" property="ispre" jdbcType="TINYINT" />
+    <result column="openId" property="openId" jdbcType="VARCHAR" />
+    <result column="nickName" property="nickName" jdbcType="VARCHAR" />
+    <result column="headimgurl" property="headimgurl" jdbcType="VARCHAR" />
+    <result column="area_id" property="areaId" jdbcType="INTEGER" />
+    <result column="city_id" property="cityId" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <select id="getExtraUserByCondition"  parameterType="com.imxiaomai.persistence.domain.ExtraUser"    resultMap="ExtraResultMap" >
+    select user.id, user.mobilePhone, user.password, user.token, user.collegeId, 
+    user.realName, user.userName, user.email, user.sex, user.ispre,
+    wx_bind_user.openId,wx_bind_user.nickName,wx_bind_user.headimgurl,college_info.area_id,area_info.city_id
+    from user left join wx_bind_user on user.id=wx_bind_user.userId 
+    left join college_info on user.collegeId=college_info.id
+    left join area_info on college_info.area_id=area_info.id
+    where 1=1
+    <if test="openId != null and openId != '' " >
+      and  wx_bind_user.openId = #{openId,jdbcType=VARCHAR}
+    </if>
+    <if test="mobilephone != null and mobilephone != '' " >
+      and user.mobilePhone= #{mobilephone,jdbcType=VARCHAR}
+    </if>
+    <if test="id != null and id != 0 " >
+      and  user.id = #{id,jdbcType=INTEGER}
+    </if>
+    
+	<if test="areaId != null and areaId != 0 " >
+      and  college_info.area_id = #{areaId,jdbcType=INTEGER}
+    </if>
+  </select>
+  
+  
+  <select id="getExtraUserByConditionForInnerJoin"  parameterType="com.imxiaomai.persistence.domain.ExtraUser"    resultMap="ExtraResultMap" >
+    select user.id, user.mobilePhone, user.password, user.token, user.collegeId, 
+    user.realName, user.userName, user.email, user.sex, user.ispre,
+    wx_bind_user.openId,wx_bind_user.nickName,wx_bind_user.headimgurl,college_info.area_id,area_info.city_id
+    from user inner join wx_bind_user on user.id=wx_bind_user.userId 
+    left join college_info on user.collegeId=college_info.id
+    left join area_info on college_info.area_id=area_info.id
+    where 1=1
+    <if test="openId != null and openId != '' " >
+      and  wx_bind_user.openId = #{openId,jdbcType=VARCHAR}
+    </if>
+    <if test="mobilephone != null and mobilephone != '' " >
+      and user.mobilePhone= #{mobilephone,jdbcType=VARCHAR}
+    </if>
+    <if test="id != null and id != 0 " >
+      and  user.id = #{id,jdbcType=INTEGER}
+    </if>
+    
+	<if test="areaId != null and areaId != 0 " >
+      and  college_info.area_id = #{areaId,jdbcType=INTEGER}
+    </if>
+  </select>
+
+  
+  <select id="getUserByOpenId"  parameterType="java.lang.String"    resultMap="BaseResultMap" >
+    select user.*
+    from user inner join wx_bind_user on user.id=wx_bind_user.userId 
+    where 1=1 and  wx_bind_user.openId = #{openId,jdbcType=VARCHAR}
+    <![CDATA[ and user.ispre <> 1]]>  
+  </select>
+  
+  
+  <select id="getUserByOpenIdExceptPre"  parameterType="com.imxiaomai.persistence.domain.ExtraUser"    resultMap="ExtraResultMap" >
+    select user.id, user.mobilePhone, user.password, user.token, user.collegeId, 
+    user.realName, user.userName, user.email, user.sex, user.ispre,
+    wx_bind_user.openId,wx_bind_user.nickName,wx_bind_user.headimgurl
+    from user left join wx_bind_user on user.id=wx_bind_user.userId 
+    where 1=1 and  wx_bind_user.openId = #{openId,jdbcType=VARCHAR}
+    <![CDATA[ and user.ispre <> 1]]>  
+  </select>
+  
+  
+  <resultMap id="UserGoldMap" type="com.imxiaomai.persistence.domain.UserGold" >
+    <id column="userId" property="userId" jdbcType="INTEGER" />
+    <result column="mobilePhone" property="mobilePhone" jdbcType="VARCHAR" />
+    <result column="gold" property="gold" jdbcType="INTEGER" />
+    <result column="realName" property="realName" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="selectOrderByGold"  parameterType="java.lang.Integer"     resultMap="UserGoldMap" >
+   	  SELECT us.gold,us.userId,u.mobilePhone,u.realName FROM userStat AS us 
+   	  LEFT JOIN user AS u ON us.userId = u.id ORDER BY us.gold DESC 
+   	  LIMIT #{retNum,jdbcType=INTEGER} 
+  </select>
+
+  <update id="updatePasswordAndFlag" parameterType="com.imxiaomai.persistence.domain.User" >
+    update user set 
+   		password = #{password,jdbcType=VARCHAR},
+      	token = #{token,jdbcType=VARCHAR},
+        updatePwdflag = #{updatePwdFlag,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+</mapper>

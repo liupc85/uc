@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans default-autowire="byName">
+
+	<bean id="areaManager" class="com.imxiaomai.manager.impl.AreaManagerImpl" />
+	<bean id="cityManager" class="com.imxiaomai.manager.impl.CityManagerImpl" />
+	<bean id="collegeManager" class="com.imxiaomai.manager.impl.CollegeManagerImpl" />
+	<bean id="countryManager" class="com.imxiaomai.manager.impl.CountryManagerImpl" />
+	<bean id="courierDeviceManager" class="com.imxiaomai.manager.impl.CourierDeviceManagerImpl" />
+	<bean id="courierMiDeviceManager" class="com.imxiaomai.manager.impl.CourierMiDeviceManagerImpl" />
+	<bean id="deviceManager" class="com.imxiaomai.manager.impl.DeviceManagerImpl" />
+	<bean id="expressManager" class="com.imxiaomai.manager.impl.ExpressManagerImpl" />
+	<bean id="expressPriceManager" class="com.imxiaomai.manager.impl.ExpressPriceManagerImpl" />
+	<bean id="ExpressPriceSfManager" class="com.imxiaomai.manager.impl.ExpressPriceSfManagerImpl" />
+	<bean id="feedbackManager" class="com.imxiaomai.manager.impl.FeedbackManagerImpl" />
+	<bean id="miDeviceManager" class="com.imxiaomai.manager.impl.MiDeviceManagerImpl" />
+	<bean id="provinceManager" class="com.imxiaomai.manager.impl.ProvinceManagerImpl" />
+	<bean id="regionManager" class="com.imxiaomai.manager.impl.RegionManagerImpl" />
+	<bean id="scorelistManager" class="com.imxiaomai.manager.impl.ScorelistManagerImpl" />
+	<bean id="smsRecordsManager" class="com.imxiaomai.manager.impl.SmsRecordsManagerImpl" />
+	<bean id="storeManager" class="com.imxiaomai.manager.impl.StoreManagerImpl" />
+	<bean id="storeExpressManager" class="com.imxiaomai.manager.impl.StoreExpressManagerImpl" />
+	<bean id="storeFavorableManager" class="com.imxiaomai.manager.impl.StoreFavorableManagerImpl" />
+	<bean id="userManager" class="com.imxiaomai.manager.impl.UserManagerImpl" />
+	<bean id="userStatManager" class="com.imxiaomai.manager.impl.UserStatManagerImpl" />
+	<bean id="upgradeManager" class="com.imxiaomai.manager.impl.UpgradeManagerImpl" />
+	<bean id="upgradePloyManager" class="com.imxiaomai.manager.impl.UpgradePloyManagerImpl" />
+	<bean id="versionsManager" class="com.imxiaomai.manager.impl.VersionsManagerImpl" />
+	<bean id="wxBindUserManager" class="com.imxiaomai.manager.impl.WxBindUserManagerImpl" />
+	<bean id="userPanshiManager" class="com.imxiaomai.manager.impl.UserPanshiManagerImpl" />
+<bean id="userSourceManager" class="com.imxiaomai.manager.impl.UserSourceManagerImpl" />
+	
+</beans>

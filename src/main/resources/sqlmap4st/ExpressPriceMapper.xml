@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.imxiaomai.persistence.mapper.ExpressPriceMapper" >
+  <resultMap id="BaseResultMap" type="com.imxiaomai.persistence.domain.ExpressPrice" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="expressId" property="expressid" jdbcType="INTEGER" />
+    <result column="sourceProvinceId" property="sourceprovinceid" jdbcType="INTEGER" />
+    <result column="sourceCityId" property="sourcecityid" jdbcType="INTEGER" />
+    <result column="sourceAreaId" property="sourceareaid" jdbcType="INTEGER" />
+    <result column="sourceStoreId" property="sourcestoreid" jdbcType="INTEGER" />
+    <result column="targetProvinceId" property="targetprovinceid" jdbcType="INTEGER" />
+    <result column="targetCityId" property="targetcityid" jdbcType="INTEGER" />
+    <result column="targetAreaId" property="targetareaid" jdbcType="INTEGER" />
+    <result column="targetStoreId" property="targetstoreid" jdbcType="INTEGER" />
+    <result column="price1" property="price1" jdbcType="INTEGER" />
+    <result column="price2" property="price2" jdbcType="INTEGER" />
+    <result column="price3" property="price3" jdbcType="INTEGER" />
+    <result column="price4" property="price4" jdbcType="INTEGER" />
+    <result column="price5" property="price5" jdbcType="INTEGER" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, expressId, sourceProvinceId, sourceCityId, sourceAreaId, sourceStoreId, targetProvinceId, 
+    targetCityId, targetAreaId, targetStoreId, price1, price2, price3, price4, price5, 
+    createTime, updateTime, status
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.imxiaomai.persistence.domain.ExpressPriceExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from express_price
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from express_price
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from express_price
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.imxiaomai.persistence.domain.ExpressPriceExample" >
+    delete from express_price
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.imxiaomai.persistence.domain.ExpressPrice" >
+    insert into express_price ( expressId, sourceProvinceId, 
+      sourceCityId, sourceAreaId, sourceStoreId, 
+      targetProvinceId, targetCityId, targetAreaId, 
+      targetStoreId, price1, price2, 
+      price3, price4, price5, 
+      createTime, updateTime, status
+      )
+    values (#{expressid,jdbcType=INTEGER}, #{sourceprovinceid,jdbcType=INTEGER}, 
+      #{sourcecityid,jdbcType=INTEGER}, #{sourceareaid,jdbcType=INTEGER}, #{sourcestoreid,jdbcType=INTEGER}, 
+      #{targetprovinceid,jdbcType=INTEGER}, #{targetcityid,jdbcType=INTEGER}, #{targetareaid,jdbcType=INTEGER}, 
+      #{targetstoreid,jdbcType=INTEGER}, #{price1,jdbcType=INTEGER}, #{price2,jdbcType=INTEGER}, 
+      #{price3,jdbcType=INTEGER}, #{price4,jdbcType=INTEGER}, #{price5,jdbcType=INTEGER}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.imxiaomai.persistence.domain.ExpressPrice" >
+    insert into express_price
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="expressid != null" >
+        expressId,
+      </if>
+      <if test="sourceprovinceid != null" >
+        sourceProvinceId,
+      </if>
+      <if test="sourcecityid != null" >
+        sourceCityId,
+      </if>
+      <if test="sourceareaid != null" >
+        sourceAreaId,
+      </if>
+      <if test="sourcestoreid != null" >
+        sourceStoreId,
+      </if>
+      <if test="targetprovinceid != null" >
+        targetProvinceId,
+      </if>
+      <if test="targetcityid != null" >
+        targetCityId,
+      </if>
+      <if test="targetareaid != null" >
+        targetAreaId,
+      </if>
+      <if test="targetstoreid != null" >
+        targetStoreId,
+      </if>
+      <if test="price1 != null" >
+        price1,
+      </if>
+      <if test="price2 != null" >
+        price2,
+      </if>
+      <if test="price3 != null" >
+        price3,
+      </if>
+      <if test="price4 != null" >
+        price4,
+      </if>
+      <if test="price5 != null" >
+        price5,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="expressid != null" >
+        #{expressid,jdbcType=INTEGER},
+      </if>
+      <if test="sourceprovinceid != null" >
+        #{sourceprovinceid,jdbcType=INTEGER},
+      </if>
+      <if test="sourcecityid != null" >
+        #{sourcecityid,jdbcType=INTEGER},
+      </if>
+      <if test="sourceareaid != null" >
+        #{sourceareaid,jdbcType=INTEGER},
+      </if>
+      <if test="sourcestoreid != null" >
+        #{sourcestoreid,jdbcType=INTEGER},
+      </if>
+      <if test="targetprovinceid != null" >
+        #{targetprovinceid,jdbcType=INTEGER},
+      </if>
+      <if test="targetcityid != null" >
+        #{targetcityid,jdbcType=INTEGER},
+      </if>
+      <if test="targetareaid != null" >
+        #{targetareaid,jdbcType=INTEGER},
+      </if>
+      <if test="targetstoreid != null" >
+        #{targetstoreid,jdbcType=INTEGER},
+      </if>
+      <if test="price1 != null" >
+        #{price1,jdbcType=INTEGER},
+      </if>
+      <if test="price2 != null" >
+        #{price2,jdbcType=INTEGER},
+      </if>
+      <if test="price3 != null" >
+        #{price3,jdbcType=INTEGER},
+      </if>
+      <if test="price4 != null" >
+        #{price4,jdbcType=INTEGER},
+      </if>
+      <if test="price5 != null" >
+        #{price5,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.imxiaomai.persistence.domain.ExpressPriceExample" resultType="java.lang.Integer" >
+    select count(*) from express_price
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update express_price
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.expressid != null" >
+        expressId = #{record.expressid,jdbcType=INTEGER},
+      </if>
+      <if test="record.sourceprovinceid != null" >
+        sourceProvinceId = #{record.sourceprovinceid,jdbcType=INTEGER},
+      </if>
+      <if test="record.sourcecityid != null" >
+        sourceCityId = #{record.sourcecityid,jdbcType=INTEGER},
+      </if>
+      <if test="record.sourceareaid != null" >
+        sourceAreaId = #{record.sourceareaid,jdbcType=INTEGER},
+      </if>
+      <if test="record.sourcestoreid != null" >
+        sourceStoreId = #{record.sourcestoreid,jdbcType=INTEGER},
+      </if>
+      <if test="record.targetprovinceid != null" >
+        targetProvinceId = #{record.targetprovinceid,jdbcType=INTEGER},
+      </if>
+      <if test="record.targetcityid != null" >
+        targetCityId = #{record.targetcityid,jdbcType=INTEGER},
+      </if>
+      <if test="record.targetareaid != null" >
+        targetAreaId = #{record.targetareaid,jdbcType=INTEGER},
+      </if>
+      <if test="record.targetstoreid != null" >
+        targetStoreId = #{record.targetstoreid,jdbcType=INTEGER},
+      </if>
+      <if test="record.price1 != null" >
+        price1 = #{record.price1,jdbcType=INTEGER},
+      </if>
+      <if test="record.price2 != null" >
+        price2 = #{record.price2,jdbcType=INTEGER},
+      </if>
+      <if test="record.price3 != null" >
+        price3 = #{record.price3,jdbcType=INTEGER},
+      </if>
+      <if test="record.price4 != null" >
+        price4 = #{record.price4,jdbcType=INTEGER},
+      </if>
+      <if test="record.price5 != null" >
+        price5 = #{record.price5,jdbcType=INTEGER},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatetime != null" >
+        updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update express_price
+    set id = #{record.id,jdbcType=INTEGER},
+      expressId = #{record.expressid,jdbcType=INTEGER},
+      sourceProvinceId = #{record.sourceprovinceid,jdbcType=INTEGER},
+      sourceCityId = #{record.sourcecityid,jdbcType=INTEGER},
+      sourceAreaId = #{record.sourceareaid,jdbcType=INTEGER},
+      sourceStoreId = #{record.sourcestoreid,jdbcType=INTEGER},
+      targetProvinceId = #{record.targetprovinceid,jdbcType=INTEGER},
+      targetCityId = #{record.targetcityid,jdbcType=INTEGER},
+      targetAreaId = #{record.targetareaid,jdbcType=INTEGER},
+      targetStoreId = #{record.targetstoreid,jdbcType=INTEGER},
+      price1 = #{record.price1,jdbcType=INTEGER},
+      price2 = #{record.price2,jdbcType=INTEGER},
+      price3 = #{record.price3,jdbcType=INTEGER},
+      price4 = #{record.price4,jdbcType=INTEGER},
+      price5 = #{record.price5,jdbcType=INTEGER},
+      createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
+      status = #{record.status,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.imxiaomai.persistence.domain.ExpressPrice" >
+    update express_price
+    <set >
+      <if test="expressid != null" >
+        expressId = #{expressid,jdbcType=INTEGER},
+      </if>
+      <if test="sourceprovinceid != null" >
+        sourceProvinceId = #{sourceprovinceid,jdbcType=INTEGER},
+      </if>
+      <if test="sourcecityid != null" >
+        sourceCityId = #{sourcecityid,jdbcType=INTEGER},
+      </if>
+      <if test="sourceareaid != null" >
+        sourceAreaId = #{sourceareaid,jdbcType=INTEGER},
+      </if>
+      <if test="sourcestoreid != null" >
+        sourceStoreId = #{sourcestoreid,jdbcType=INTEGER},
+      </if>
+      <if test="targetprovinceid != null" >
+        targetProvinceId = #{targetprovinceid,jdbcType=INTEGER},
+      </if>
+      <if test="targetcityid != null" >
+        targetCityId = #{targetcityid,jdbcType=INTEGER},
+      </if>
+      <if test="targetareaid != null" >
+        targetAreaId = #{targetareaid,jdbcType=INTEGER},
+      </if>
+      <if test="targetstoreid != null" >
+        targetStoreId = #{targetstoreid,jdbcType=INTEGER},
+      </if>
+      <if test="price1 != null" >
+        price1 = #{price1,jdbcType=INTEGER},
+      </if>
+      <if test="price2 != null" >
+        price2 = #{price2,jdbcType=INTEGER},
+      </if>
+      <if test="price3 != null" >
+        price3 = #{price3,jdbcType=INTEGER},
+      </if>
+      <if test="price4 != null" >
+        price4 = #{price4,jdbcType=INTEGER},
+      </if>
+      <if test="price5 != null" >
+        price5 = #{price5,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.imxiaomai.persistence.domain.ExpressPrice" >
+    update express_price
+    set expressId = #{expressid,jdbcType=INTEGER},
+      sourceProvinceId = #{sourceprovinceid,jdbcType=INTEGER},
+      sourceCityId = #{sourcecityid,jdbcType=INTEGER},
+      sourceAreaId = #{sourceareaid,jdbcType=INTEGER},
+      sourceStoreId = #{sourcestoreid,jdbcType=INTEGER},
+      targetProvinceId = #{targetprovinceid,jdbcType=INTEGER},
+      targetCityId = #{targetcityid,jdbcType=INTEGER},
+      targetAreaId = #{targetareaid,jdbcType=INTEGER},
+      targetStoreId = #{targetstoreid,jdbcType=INTEGER},
+      price1 = #{price1,jdbcType=INTEGER},
+      price2 = #{price2,jdbcType=INTEGER},
+      price3 = #{price3,jdbcType=INTEGER},
+      price4 = #{price4,jdbcType=INTEGER},
+      price5 = #{price5,jdbcType=INTEGER},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="getBySomeCondition" resultMap="BaseResultMap" parameterType="com.imxiaomai.persistence.domain.ExpressPrice">
+    <!--
+      WARNING - @mbggenerated
+      This element is automatically generated by MyBatis Generator, do not modify.
+      This element was generated on Sat Jul 25 14:53:08 CST 2015.
+    -->
+    
+    select 
+    <include refid="Base_Column_List" />
+    	from express_price
+   		 where 1=1 
+		
+      <if test="sourceareaid != null and sourceareaid!=0" >
+      	and sourceAreaId =  #{sourceareaid,jdbcType=INTEGER}
+      </if>
+     
+      <if test="targetareaid != null and targetareaid!=0" >
+       and targetAreaId =  #{targetareaid,jdbcType=INTEGER}
+      </if>
+     
+      <if test="sourceprovinceid != null and sourceprovinceid !=0" >
+		and sourceProvinceId = #{sourceprovinceid,jdbcType=INTEGER}
+      </if>
+      
+       <if test="targetprovinceid != null and targetprovinceid !=0" >
+        and targetProvinceId = #{targetprovinceid,jdbcType=INTEGER}
+      </if>
+      
+      <if test="sourcestoreid != null and sourcestoreid !=0" >
+       and sourceStoreId=#{sourcestoreid,jdbcType=INTEGER}
+      </if>
+      
+      <if test="targetcityid != null and targetcityid !=0" >
+       and targetCityId= #{targetcityid,jdbcType=INTEGER}
+      </if>
+  </select>
+  
+  
+  
+</mapper>

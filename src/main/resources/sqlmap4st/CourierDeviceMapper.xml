@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.imxiaomai.persistence.mapper.CourierDeviceMapper" >
+  <resultMap id="BaseResultMap" type="com.imxiaomai.persistence.domain.CourierDevice" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="mobilePhone" property="mobilephone" jdbcType="VARCHAR" />
+    <result column="deviceId" property="deviceid" jdbcType="VARCHAR" />
+    <result column="channelId" property="channelid" jdbcType="VARCHAR" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+    <result column="platform" property="platform" jdbcType="VARCHAR" />
+    <result column="version" property="version" jdbcType="VARCHAR" />
+    <result column="srcChannel" property="srcchannel" jdbcType="VARCHAR" />
+    <result column="lastUpdateChannel" property="lastupdatechannel" jdbcType="VARCHAR" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="baiduUserId" property="baiduuserid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, userId, mobilePhone, deviceId, channelId, source, platform, version, srcChannel, 
+    lastUpdateChannel, createTime, updateTime, baiduUserId
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.imxiaomai.persistence.domain.CourierDeviceExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from courier_device_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from courier_device_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from courier_device_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.imxiaomai.persistence.domain.CourierDeviceExample" >
+    delete from courier_device_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.imxiaomai.persistence.domain.CourierDevice" >
+    insert into courier_device_info ( userId, mobilePhone, 
+      deviceId, channelId, source, 
+      platform, version, srcChannel, 
+      lastUpdateChannel, createTime, updateTime, 
+      baiduUserId)
+    values ( #{userid,jdbcType=INTEGER}, #{mobilephone,jdbcType=VARCHAR}, 
+      #{deviceid,jdbcType=VARCHAR}, #{channelid,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, 
+      #{platform,jdbcType=VARCHAR}, #{version,jdbcType=VARCHAR}, #{srcchannel,jdbcType=VARCHAR}, 
+      #{lastupdatechannel,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{baiduuserid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.imxiaomai.persistence.domain.CourierDevice" >
+    insert into courier_device_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="mobilephone != null" >
+        mobilePhone,
+      </if>
+      <if test="deviceid != null" >
+        deviceId,
+      </if>
+      <if test="channelid != null" >
+        channelId,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="platform != null" >
+        platform,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="srcchannel != null" >
+        srcChannel,
+      </if>
+      <if test="lastupdatechannel != null" >
+        lastUpdateChannel,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+      <if test="baiduuserid != null" >
+        baiduUserId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="mobilephone != null" >
+        #{mobilephone,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceid != null" >
+        #{deviceid,jdbcType=VARCHAR},
+      </if>
+      <if test="channelid != null" >
+        #{channelid,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="platform != null" >
+        #{platform,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="srcchannel != null" >
+        #{srcchannel,jdbcType=VARCHAR},
+      </if>
+      <if test="lastupdatechannel != null" >
+        #{lastupdatechannel,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="baiduuserid != null" >
+        #{baiduuserid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.imxiaomai.persistence.domain.CourierDeviceExample" resultType="java.lang.Integer" >
+    select count(*) from courier_device_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update courier_device_info
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.userid != null" >
+        userId = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.mobilephone != null" >
+        mobilePhone = #{record.mobilephone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deviceid != null" >
+        deviceId = #{record.deviceid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.channelid != null" >
+        channelId = #{record.channelid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.source != null" >
+        source = #{record.source,jdbcType=VARCHAR},
+      </if>
+      <if test="record.platform != null" >
+        platform = #{record.platform,jdbcType=VARCHAR},
+      </if>
+      <if test="record.version != null" >
+        version = #{record.version,jdbcType=VARCHAR},
+      </if>
+      <if test="record.srcchannel != null" >
+        srcChannel = #{record.srcchannel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastupdatechannel != null" >
+        lastUpdateChannel = #{record.lastupdatechannel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatetime != null" >
+        updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.baiduuserid != null" >
+        baiduUserId = #{record.baiduuserid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update courier_device_info
+    set id = #{record.id,jdbcType=INTEGER},
+      userId = #{record.userid,jdbcType=INTEGER},
+      mobilePhone = #{record.mobilephone,jdbcType=VARCHAR},
+      deviceId = #{record.deviceid,jdbcType=VARCHAR},
+      channelId = #{record.channelid,jdbcType=VARCHAR},
+      source = #{record.source,jdbcType=VARCHAR},
+      platform = #{record.platform,jdbcType=VARCHAR},
+      version = #{record.version,jdbcType=VARCHAR},
+      srcChannel = #{record.srcchannel,jdbcType=VARCHAR},
+      lastUpdateChannel = #{record.lastupdatechannel,jdbcType=VARCHAR},
+      createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
+      baiduUserId = #{record.baiduuserid,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.imxiaomai.persistence.domain.CourierDevice" >
+    update courier_device_info
+    <set >
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="mobilephone != null" >
+        mobilePhone = #{mobilephone,jdbcType=VARCHAR},
+      </if>
+	  <if test="channelid != null" >
+        channelId = #{channelid,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceid != null" >
+        deviceId = #{deviceid,jdbcType=VARCHAR},
+      </if>
+
+      <if test="source != null" >
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="platform != null" >
+        platform = #{platform,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="srcchannel != null" >
+        srcChannel = #{srcchannel,jdbcType=VARCHAR},
+      </if>
+      <if test="lastupdatechannel != null" >
+        lastUpdateChannel = #{lastupdatechannel,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="baiduuserid != null" >
+        baiduUserId = #{baiduuserid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.imxiaomai.persistence.domain.CourierDevice" >
+    update courier_device_info
+    set userId = #{userid,jdbcType=INTEGER},
+      mobilePhone = #{mobilephone,jdbcType=VARCHAR},
+      deviceId = #{deviceid,jdbcType=VARCHAR},
+      channelId = #{channelid,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR},
+      platform = #{platform,jdbcType=VARCHAR},
+      version = #{version,jdbcType=VARCHAR},
+      srcChannel = #{srcchannel,jdbcType=VARCHAR},
+      lastUpdateChannel = #{lastupdatechannel,jdbcType=VARCHAR},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      baiduUserId = #{baiduuserid,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="getByDeviceIdAndMobilePhone" resultMap="BaseResultMap" parameterType="com.imxiaomai.persistence.domain.CourierDevice">
+    <!--
+      WARNING - @mbggenerated
+      This element is automatically generated by MyBatis Generator, do not modify.
+      This element was generated on Sat Jul 25 14:53:08 CST 2015.
+    -->
+    
+    select 
+    <include refid="Base_Column_List" />
+    from courier_device_info
+    where mobilePhone = #{mobilephone,jdbcType=VARCHAR}
+    and  deviceId = #{deviceid,jdbcType=VARCHAR}
+    limit 1
+  </select>
+ 
+  <update id="updateByPair" parameterType="map" statementType="STATEMENT">
+    update courier_device_info set ${field} = ${value},updateTime= ${updateTime}  where id = ${id}
+  </update>
+ 
+  
+</mapper>

@@ -1,0 +1,837 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.imxiaomai.persistence.mapper.StoreMapper" >
+  <resultMap id="BaseResultMap" type="com.imxiaomai.persistence.domain.Store" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="short_name" property="shortName" jdbcType="VARCHAR" />
+    <result column="owner" property="owner" jdbcType="VARCHAR" />
+    <result column="license" property="license" jdbcType="VARCHAR" />
+    <result column="license_activate_num" property="licenseActivateNum" jdbcType="INTEGER" />
+    <result column="license_activated_num" property="licenseActivatedNum" jdbcType="INTEGER" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="take_express_phone" property="takeExpressPhone" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="province_id" property="provinceId" jdbcType="INTEGER" />
+    <result column="city_id" property="cityId" jdbcType="INTEGER" />
+    <result column="area_id" property="areaId" jdbcType="INTEGER" />
+    <result column="college_id" property="collegeId" jdbcType="INTEGER" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="isjoin" property="isjoin" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="isdel" property="isdel" jdbcType="INTEGER" />
+    <result column="isP2p" property="isp2p" jdbcType="INTEGER" />
+    <result column="short_address" property="shortAddress" jdbcType="VARCHAR" />
+    <result column="latest_business_time" property="latestBusinessTime" jdbcType="VARCHAR" />
+    <result column="collect_id" property="collectId" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="operate_type" property="operateType" jdbcType="TINYINT" />
+    <result column="space" property="space" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="TINYINT" />
+    <result column="region_id" property="regionId" jdbcType="INTEGER" />
+    <result column="receive_ids" property="receiveIds" jdbcType="VARCHAR" />
+    <result column="dispatch_ids" property="dispatchIds" jdbcType="VARCHAR" />
+    <result column="start_time" property="startTime" jdbcType="VARCHAR" />
+    <result column="end_time" property="endTime" jdbcType="VARCHAR" />
+    <result column="create_staff_id" property="createStaffId" jdbcType="INTEGER" />
+    <result column="update_staff_id" property="updateStaffId" jdbcType="INTEGER" />
+    <result column="ct_ids" property="ctIds" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, name, short_name, owner, license, license_activate_num, license_activated_num, 
+    phone, take_express_phone, status, province_id, city_id, area_id, college_id, address, 
+    isjoin, create_time, isdel, isP2p, short_address, latest_business_time, collect_id, 
+    code, operate_type, space, level, region_id, receive_ids, dispatch_ids, start_time, 
+    end_time, create_staff_id, update_staff_id, ct_ids, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.imxiaomai.persistence.domain.StoreExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from store_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from store_info
+    where id = #{id,jdbcType=INTEGER}
+    and isdel =0
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from store_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.imxiaomai.persistence.domain.StoreExample" >
+    delete from store_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.imxiaomai.persistence.domain.Store" >
+    insert into store_info (id, name, short_name, 
+      owner, license, license_activate_num, 
+      license_activated_num, phone, take_express_phone, 
+      status, province_id, city_id, 
+      area_id, college_id, address, 
+      isjoin, create_time, isdel, 
+      isP2p, short_address, latest_business_time, 
+      collect_id, code, operate_type, 
+      space, level, region_id, 
+      receive_ids, dispatch_ids, start_time, 
+      end_time, create_staff_id, update_staff_id, 
+      ct_ids, update_time)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{shortName,jdbcType=VARCHAR}, 
+      #{owner,jdbcType=VARCHAR}, #{license,jdbcType=VARCHAR}, #{licenseActivateNum,jdbcType=INTEGER}, 
+      #{licenseActivatedNum,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{takeExpressPhone,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{provinceId,jdbcType=INTEGER}, #{cityId,jdbcType=INTEGER}, 
+      #{areaId,jdbcType=INTEGER}, #{collegeId,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, 
+      #{isjoin,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{isdel,jdbcType=INTEGER}, 
+      #{isp2p,jdbcType=INTEGER}, #{shortAddress,jdbcType=VARCHAR}, #{latestBusinessTime,jdbcType=VARCHAR}, 
+      #{collectId,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{operateType,jdbcType=TINYINT}, 
+      #{space,jdbcType=VARCHAR}, #{level,jdbcType=TINYINT}, #{regionId,jdbcType=INTEGER}, 
+      #{receiveIds,jdbcType=VARCHAR}, #{dispatchIds,jdbcType=VARCHAR}, #{startTime,jdbcType=VARCHAR}, 
+      #{endTime,jdbcType=VARCHAR}, #{createStaffId,jdbcType=INTEGER}, #{updateStaffId,jdbcType=INTEGER}, 
+      #{ctIds,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.imxiaomai.persistence.domain.Store" >
+    insert into store_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="shortName != null" >
+        short_name,
+      </if>
+      <if test="owner != null" >
+        owner,
+      </if>
+      <if test="license != null" >
+        license,
+      </if>
+      <if test="licenseActivateNum != null" >
+        license_activate_num,
+      </if>
+      <if test="licenseActivatedNum != null" >
+        license_activated_num,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="takeExpressPhone != null" >
+        take_express_phone,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="provinceId != null" >
+        province_id,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="collegeId != null" >
+        college_id,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="isjoin != null" >
+        isjoin,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="isdel != null" >
+        isdel,
+      </if>
+      <if test="isp2p != null" >
+        isP2p,
+      </if>
+      <if test="shortAddress != null" >
+        short_address,
+      </if>
+      <if test="latestBusinessTime != null" >
+        latest_business_time,
+      </if>
+      <if test="collectId != null" >
+        collect_id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="operateType != null" >
+        operate_type,
+      </if>
+      <if test="space != null" >
+        space,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="regionId != null" >
+        region_id,
+      </if>
+      <if test="receiveIds != null" >
+        receive_ids,
+      </if>
+      <if test="dispatchIds != null" >
+        dispatch_ids,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="createStaffId != null" >
+        create_staff_id,
+      </if>
+      <if test="updateStaffId != null" >
+        update_staff_id,
+      </if>
+      <if test="ctIds != null" >
+        ct_ids,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="shortName != null" >
+        #{shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="owner != null" >
+        #{owner,jdbcType=VARCHAR},
+      </if>
+      <if test="license != null" >
+        #{license,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseActivateNum != null" >
+        #{licenseActivateNum,jdbcType=INTEGER},
+      </if>
+      <if test="licenseActivatedNum != null" >
+        #{licenseActivatedNum,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="takeExpressPhone != null" >
+        #{takeExpressPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="provinceId != null" >
+        #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="collegeId != null" >
+        #{collegeId,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="isjoin != null" >
+        #{isjoin,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdel != null" >
+        #{isdel,jdbcType=INTEGER},
+      </if>
+      <if test="isp2p != null" >
+        #{isp2p,jdbcType=INTEGER},
+      </if>
+      <if test="shortAddress != null" >
+        #{shortAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="latestBusinessTime != null" >
+        #{latestBusinessTime,jdbcType=VARCHAR},
+      </if>
+      <if test="collectId != null" >
+        #{collectId,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="operateType != null" >
+        #{operateType,jdbcType=TINYINT},
+      </if>
+      <if test="space != null" >
+        #{space,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=TINYINT},
+      </if>
+      <if test="regionId != null" >
+        #{regionId,jdbcType=INTEGER},
+      </if>
+      <if test="receiveIds != null" >
+        #{receiveIds,jdbcType=VARCHAR},
+      </if>
+      <if test="dispatchIds != null" >
+        #{dispatchIds,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createStaffId != null" >
+        #{createStaffId,jdbcType=INTEGER},
+      </if>
+      <if test="updateStaffId != null" >
+        #{updateStaffId,jdbcType=INTEGER},
+      </if>
+      <if test="ctIds != null" >
+        #{ctIds,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.imxiaomai.persistence.domain.StoreExample" resultType="java.lang.Integer" >
+    select count(*) from store_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update store_info
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shortName != null" >
+        short_name = #{record.shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.owner != null" >
+        owner = #{record.owner,jdbcType=VARCHAR},
+      </if>
+      <if test="record.license != null" >
+        license = #{record.license,jdbcType=VARCHAR},
+      </if>
+      <if test="record.licenseActivateNum != null" >
+        license_activate_num = #{record.licenseActivateNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.licenseActivatedNum != null" >
+        license_activated_num = #{record.licenseActivatedNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.takeExpressPhone != null" >
+        take_express_phone = #{record.takeExpressPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.provinceId != null" >
+        province_id = #{record.provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="record.cityId != null" >
+        city_id = #{record.cityId,jdbcType=INTEGER},
+      </if>
+      <if test="record.areaId != null" >
+        area_id = #{record.areaId,jdbcType=INTEGER},
+      </if>
+      <if test="record.collegeId != null" >
+        college_id = #{record.collegeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isjoin != null" >
+        isjoin = #{record.isjoin,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isdel != null" >
+        isdel = #{record.isdel,jdbcType=INTEGER},
+      </if>
+      <if test="record.isp2p != null" >
+        isP2p = #{record.isp2p,jdbcType=INTEGER},
+      </if>
+      <if test="record.shortAddress != null" >
+        short_address = #{record.shortAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.latestBusinessTime != null" >
+        latest_business_time = #{record.latestBusinessTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.collectId != null" >
+        collect_id = #{record.collectId,jdbcType=INTEGER},
+      </if>
+      <if test="record.code != null" >
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operateType != null" >
+        operate_type = #{record.operateType,jdbcType=TINYINT},
+      </if>
+      <if test="record.space != null" >
+        space = #{record.space,jdbcType=VARCHAR},
+      </if>
+      <if test="record.level != null" >
+        level = #{record.level,jdbcType=TINYINT},
+      </if>
+      <if test="record.regionId != null" >
+        region_id = #{record.regionId,jdbcType=INTEGER},
+      </if>
+      <if test="record.receiveIds != null" >
+        receive_ids = #{record.receiveIds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dispatchIds != null" >
+        dispatch_ids = #{record.dispatchIds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startTime != null" >
+        start_time = #{record.startTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.endTime != null" >
+        end_time = #{record.endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createStaffId != null" >
+        create_staff_id = #{record.createStaffId,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateStaffId != null" >
+        update_staff_id = #{record.updateStaffId,jdbcType=INTEGER},
+      </if>
+      <if test="record.ctIds != null" >
+        ct_ids = #{record.ctIds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update store_info
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      short_name = #{record.shortName,jdbcType=VARCHAR},
+      owner = #{record.owner,jdbcType=VARCHAR},
+      license = #{record.license,jdbcType=VARCHAR},
+      license_activate_num = #{record.licenseActivateNum,jdbcType=INTEGER},
+      license_activated_num = #{record.licenseActivatedNum,jdbcType=INTEGER},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      take_express_phone = #{record.takeExpressPhone,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=INTEGER},
+      province_id = #{record.provinceId,jdbcType=INTEGER},
+      city_id = #{record.cityId,jdbcType=INTEGER},
+      area_id = #{record.areaId,jdbcType=INTEGER},
+      college_id = #{record.collegeId,jdbcType=INTEGER},
+      address = #{record.address,jdbcType=VARCHAR},
+      isjoin = #{record.isjoin,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      isdel = #{record.isdel,jdbcType=INTEGER},
+      isP2p = #{record.isp2p,jdbcType=INTEGER},
+      short_address = #{record.shortAddress,jdbcType=VARCHAR},
+      latest_business_time = #{record.latestBusinessTime,jdbcType=VARCHAR},
+      collect_id = #{record.collectId,jdbcType=INTEGER},
+      code = #{record.code,jdbcType=VARCHAR},
+      operate_type = #{record.operateType,jdbcType=TINYINT},
+      space = #{record.space,jdbcType=VARCHAR},
+      level = #{record.level,jdbcType=TINYINT},
+      region_id = #{record.regionId,jdbcType=INTEGER},
+      receive_ids = #{record.receiveIds,jdbcType=VARCHAR},
+      dispatch_ids = #{record.dispatchIds,jdbcType=VARCHAR},
+      start_time = #{record.startTime,jdbcType=VARCHAR},
+      end_time = #{record.endTime,jdbcType=VARCHAR},
+      create_staff_id = #{record.createStaffId,jdbcType=INTEGER},
+      update_staff_id = #{record.updateStaffId,jdbcType=INTEGER},
+      ct_ids = #{record.ctIds,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.imxiaomai.persistence.domain.Store" >
+    update store_info
+    <set >
+      <if test="name != null and name !='' " >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="shortName != null and shortName !='' " >
+        short_name = #{shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="owner != null and owner !='' " >
+        owner = #{owner,jdbcType=VARCHAR},
+      </if>
+      <if test="license != null and license !='' " >
+        license = #{license,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseActivateNum != null and licenseActivateNum != 0 " >
+        license_activate_num = #{licenseActivateNum,jdbcType=INTEGER},
+      </if>
+      <if test="licenseActivatedNum != null and licenseActivatedNum != 0 " >
+        license_activated_num = #{licenseActivatedNum,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null and phone !=''" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="takeExpressPhone != null and takeExpressPhone !='' " >
+        take_express_phone = #{takeExpressPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null and status != 0" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="provinceId != null and provinceId != 0" >
+        province_id = #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null and cityId != 0" >
+        city_id = #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="areaId != null and areaId != 0" >
+        area_id = #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="collegeId != null and collegeId != 0" >
+        college_id = #{collegeId,jdbcType=INTEGER},
+      </if>
+      <if test="address != null and address !=''" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="isjoin != null and isjoin != 0" >
+        isjoin = #{isjoin,jdbcType=INTEGER},
+      </if>
+     
+      <if test="isdel != null and isdel != 0" >
+        isdel = #{isdel,jdbcType=INTEGER},
+      </if>
+      <if test="isp2p != null and isp2p != 0" >
+        isP2p = #{isp2p,jdbcType=INTEGER},
+      </if>
+      <if test="shortAddress != null  and shortAddress !=''" >
+        short_address = #{shortAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="latestBusinessTime != null  and latestBusinessTime !='' " >
+        latest_business_time = #{latestBusinessTime,jdbcType=VARCHAR},
+      </if>
+      <if test="collectId != null and collectId != 0" >
+        collect_id = #{collectId,jdbcType=INTEGER},
+      </if>
+      <if test="code != null  and code !=''" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="operateType != null and operateType != 0" >
+        operate_type = #{operateType,jdbcType=TINYINT},
+      </if>
+      <if test="space != null  and space !=''" >
+        space = #{space,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null and level != 0" >
+        level = #{level,jdbcType=TINYINT},
+      </if>
+      <if test="regionId != null and regionId != 0" >
+        region_id = #{regionId,jdbcType=INTEGER},
+      </if>
+      <if test="receiveIds != null  and receiveIds !=''" >
+        receive_ids = #{receiveIds,jdbcType=VARCHAR},
+      </if>
+      <if test="dispatchIds != null  and dispatchIds !=''" >
+        dispatch_ids = #{dispatchIds,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null and startTime != '' " >
+        start_time = #{startTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null and endTime != '' " >
+        end_time = #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createStaffId != null and createStaffId != 0" >
+        create_staff_id = #{createStaffId,jdbcType=INTEGER},
+      </if>
+      <if test="updateStaffId != null and updateStaffId != 0" >
+        update_staff_id = #{updateStaffId,jdbcType=INTEGER},
+      </if>
+      <if test="ctIds != null and ctIds != 0" >
+        ct_ids = #{ctIds,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.imxiaomai.persistence.domain.Store" >
+    update store_info
+    set name = #{name,jdbcType=VARCHAR},
+      short_name = #{shortName,jdbcType=VARCHAR},
+      owner = #{owner,jdbcType=VARCHAR},
+      license = #{license,jdbcType=VARCHAR},
+      license_activate_num = #{licenseActivateNum,jdbcType=INTEGER},
+      license_activated_num = #{licenseActivatedNum,jdbcType=INTEGER},
+      phone = #{phone,jdbcType=VARCHAR},
+      take_express_phone = #{takeExpressPhone,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      province_id = #{provinceId,jdbcType=INTEGER},
+      city_id = #{cityId,jdbcType=INTEGER},
+      area_id = #{areaId,jdbcType=INTEGER},
+      college_id = #{collegeId,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      isjoin = #{isjoin,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      isdel = #{isdel,jdbcType=INTEGER},
+      isP2p = #{isp2p,jdbcType=INTEGER},
+      short_address = #{shortAddress,jdbcType=VARCHAR},
+      latest_business_time = #{latestBusinessTime,jdbcType=VARCHAR},
+      collect_id = #{collectId,jdbcType=INTEGER},
+      code = #{code,jdbcType=VARCHAR},
+      operate_type = #{operateType,jdbcType=TINYINT},
+      space = #{space,jdbcType=VARCHAR},
+      level = #{level,jdbcType=TINYINT},
+      region_id = #{regionId,jdbcType=INTEGER},
+      receive_ids = #{receiveIds,jdbcType=VARCHAR},
+      dispatch_ids = #{dispatchIds,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=VARCHAR},
+      end_time = #{endTime,jdbcType=VARCHAR},
+      create_staff_id = #{createStaffId,jdbcType=INTEGER},
+      update_staff_id = #{updateStaffId,jdbcType=INTEGER},
+      ct_ids = #{ctIds,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="getAll" resultMap="BaseResultMap" parameterType="com.imxiaomai.persistence.domain.Store">
+    <!--
+      WARNING - @mbggenerated
+      This element is automatically generated by MyBatis Generator, do not modify.
+      This element was generated on Sat Jul 25 14:53:08 CST 2015.
+    -->
+    
+    select 
+    <include refid="Base_Column_List" />
+    from store_info
+    where 1=1
+    and isdel = #{isdel,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getByCollegeId" resultMap="BaseResultMap" parameterType="com.imxiaomai.persistence.domain.Store">
+    <!--
+      WARNING - @mbggenerated
+      This element is automatically generated by MyBatis Generator, do not modify.
+      This element was generated on Sat Jul 25 14:53:08 CST 2015.
+    -->
+    select
+    <include refid="Base_Column_List" />
+    from store_info
+    where 1=1
+    and  college_id = #{collegeId,jdbcType=INTEGER}
+    and isdel = #{isdel,jdbcType=INTEGER}
+    limit 1
+  </select>
+  
+<update id="updateBySomeCondition" parameterType="com.imxiaomai.persistence.domain.Store" >
+    update store_info
+    <set >
+        short_address = #{shortAddress,jdbcType=VARCHAR}
+        ,take_express_phone = #{takeExpressPhone,jdbcType=VARCHAR}
+      <if test="latestBusinessTime != null and latestBusinessTime !='' " >
+        , latest_business_time = #{latestBusinessTime,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="getByCondition" resultMap="BaseResultMap" parameterType="com.imxiaomai.persistence.domain.Store">
+    select
+    <include refid="Base_Column_List" />
+    from store_info
+    where 1=1
+    <if test="id != null" >
+      and id = #{id,jdbcType=INTEGER}
+    </if>
+    <if test="name != null" >
+      and name = #{name,jdbcType=VARCHAR}
+    </if>
+    <if test="shortName != null" >
+      and short_name = #{shortName,jdbcType=VARCHAR}
+    </if>
+    <if test="owner != null" >
+      and owner = #{owner,jdbcType=VARCHAR}
+    </if>
+    <if test="license != null" >
+      and license = #{license,jdbcType=VARCHAR}
+    </if>
+    <if test="licenseActivateNum != null" >
+      and license_activate_num = #{licenseActivateNum,jdbcType=INTEGER}
+    </if>
+    <if test="licenseActivatedNum != null" >
+      and license_activated_num = #{licenseActivatedNum,jdbcType=INTEGER}
+    </if>
+    <if test="phone != null" >
+      and phone = #{phone,jdbcType=VARCHAR}
+    </if>
+    <if test="takeExpressPhone != null" >
+      and take_express_phone = #{takeExpressPhone,jdbcType=VARCHAR}
+    </if>
+    <if test="status != null" >
+      and status = #{status,jdbcType=INTEGER}
+    </if>
+    <if test="provinceId != null" >
+      and province_id = #{provinceId,jdbcType=INTEGER}
+    </if>
+    <if test="cityId != null" >
+      and city_id = #{cityId,jdbcType=INTEGER}
+    </if>
+    <if test="areaId != null" >
+      and area_id = #{areaId,jdbcType=INTEGER}
+    </if>
+    <if test="collegeId != null" >
+      and college_id = #{collegeId,jdbcType=INTEGER}
+    </if>
+    <if test="address != null" >
+      and address = #{address,jdbcType=VARCHAR}
+    </if>
+    <if test="isjoin != null" >
+      and isjoin = #{isjoin,jdbcType=INTEGER}
+    </if>
+    <if test="createTime != null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="isdel != null" >
+      and isdel = #{isdel,jdbcType=INTEGER}
+    </if>
+    <if test="isp2p != null" >
+      and isP2p = #{isp2p,jdbcType=INTEGER}
+    </if>
+    <if test="shortAddress != null" >
+      and short_address = #{shortAddress,jdbcType=VARCHAR}
+    </if>
+    <if test="latestBusinessTime != null" >
+      and latest_business_time = #{latestBusinessTime,jdbcType=VARCHAR}
+    </if>
+    <if test="collectId != null" >
+      and collect_id = #{collectId,jdbcType=INTEGER}
+    </if>
+    <if test="code != null" >
+      and code = #{code,jdbcType=VARCHAR}
+    </if>
+    <if test="operateType != null" >
+      and operate_type = #{operateType,jdbcType=TINYINT}
+    </if>
+    <if test="space != null" >
+      and space = #{space,jdbcType=VARCHAR}
+    </if>
+    <if test="level != null" >
+      and level = #{level,jdbcType=TINYINT}
+    </if>
+    <if test="regionId != null" >
+      and region_id = #{regionId,jdbcType=INTEGER}
+    </if>
+    <if test="receiveIds != null" >
+      and receive_ids = #{receiveIds,jdbcType=VARCHAR}
+    </if>
+    <if test="dispatchIds != null" >
+      and dispatch_ids = #{dispatchIds,jdbcType=VARCHAR}
+    </if>
+    <if test="startTime != null" >
+      and start_time = #{startTime,jdbcType=VARCHAR}
+    </if>
+    <if test="endTime != null" >
+      and end_time = #{endTime,jdbcType=VARCHAR}
+    </if>
+    <if test="createStaffId != null" >
+      and create_staff_id = #{createStaffId,jdbcType=INTEGER}
+    </if>
+    <if test="updateStaffId != null" >
+      and update_staff_id = #{updateStaffId,jdbcType=INTEGER}
+    </if>
+    <if test="ctIds != null" >
+      and ct_ids = #{ctIds,jdbcType=VARCHAR}
+    </if>
+  </select>
+
+
+</mapper>

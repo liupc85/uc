@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.imxiaomai.persistence.mapper.UpgradePloyMapper" >
+  <resultMap id="BaseResultMap" type="com.imxiaomai.persistence.domain.UpgradePloy" >
+    <id column="opid" property="opid" jdbcType="INTEGER" />
+    <result column="upgradeName" property="upgradename" jdbcType="VARCHAR" />
+    <result column="upgradeValue" property="upgradevalue" jdbcType="VARCHAR" />
+    <result column="isUse" property="isuse" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    opid, upgradeName, upgradeValue, isUse
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.imxiaomai.persistence.domain.UpgradePloyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from upgradeploy
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from upgradeploy
+    where opid = #{opid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from upgradeploy
+    where opid = #{opid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.imxiaomai.persistence.domain.UpgradePloyExample" >
+    delete from upgradeploy
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.imxiaomai.persistence.domain.UpgradePloy" >
+    insert into upgradeploy (opid, upgradeName, upgradeValue, 
+      isUse)
+    values (#{opid,jdbcType=INTEGER}, #{upgradename,jdbcType=VARCHAR}, #{upgradevalue,jdbcType=VARCHAR}, 
+      #{isuse,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.imxiaomai.persistence.domain.UpgradePloy" >
+    insert into upgradeploy
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="opid != null" >
+        opid,
+      </if>
+      <if test="upgradename != null" >
+        upgradeName,
+      </if>
+      <if test="upgradevalue != null" >
+        upgradeValue,
+      </if>
+      <if test="isuse != null" >
+        isUse,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="opid != null" >
+        #{opid,jdbcType=INTEGER},
+      </if>
+      <if test="upgradename != null" >
+        #{upgradename,jdbcType=VARCHAR},
+      </if>
+      <if test="upgradevalue != null" >
+        #{upgradevalue,jdbcType=VARCHAR},
+      </if>
+      <if test="isuse != null" >
+        #{isuse,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.imxiaomai.persistence.domain.UpgradePloyExample" resultType="java.lang.Integer" >
+    select count(*) from upgradeploy
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update upgradeploy
+    <set >
+      <if test="record.opid != null" >
+        opid = #{record.opid,jdbcType=INTEGER},
+      </if>
+      <if test="record.upgradename != null" >
+        upgradeName = #{record.upgradename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.upgradevalue != null" >
+        upgradeValue = #{record.upgradevalue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isuse != null" >
+        isUse = #{record.isuse,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update upgradeploy
+    set opid = #{record.opid,jdbcType=INTEGER},
+      upgradeName = #{record.upgradename,jdbcType=VARCHAR},
+      upgradeValue = #{record.upgradevalue,jdbcType=VARCHAR},
+      isUse = #{record.isuse,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.imxiaomai.persistence.domain.UpgradePloy" >
+    update upgradeploy
+    <set >
+      <if test="upgradename != null" >
+        upgradeName = #{upgradename,jdbcType=VARCHAR},
+      </if>
+      <if test="upgradevalue != null" >
+        upgradeValue = #{upgradevalue,jdbcType=VARCHAR},
+      </if>
+      <if test="isuse != null" >
+        isUse = #{isuse,jdbcType=TINYINT},
+      </if>
+    </set>
+    where opid = #{opid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.imxiaomai.persistence.domain.UpgradePloy" >
+    update upgradeploy
+    set upgradeName = #{upgradename,jdbcType=VARCHAR},
+      upgradeValue = #{upgradevalue,jdbcType=VARCHAR},
+      isUse = #{isuse,jdbcType=TINYINT}
+    where opid = #{opid,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectByOpid" parameterType="java.lang.Integer" resultType="com.imxiaomai.persistence.domain.UpgradePloy" >
+   <include refid="Base_Column_List" />
+    from upgradeploy
+    where isUse = 1
+    and opid = #{opid,jdbcType=INTEGER}
+  </select>
+  
+</mapper>

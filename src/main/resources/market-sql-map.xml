@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<properties>
+        <property name="dialectClass" value="com.imxiaomai.mall.model.dialect.MySQLDialect"/>
+    </properties>
+    <settings>
+     	 <!-- 在字段值为null时也调用 setter,适应于返回Map,3.2版本以上可用 -->  
+        <setting name="callSettersOnNulls" value="true"/>  
+    </settings>
+	<mappers>
+		<mapper resource="sqlmap4st/AreaMapper.xml"/>
+		<mapper resource="sqlmap4st/CityMapper.xml"/>
+		<mapper resource="sqlmap4st/CollegeMapper.xml"/>
+		<mapper resource="sqlmap4st/CountryMapper.xml"/>
+		<mapper resource="sqlmap4st/CourierDeviceMapper.xml"/>
+		<mapper resource="sqlmap4st/CourierMideviceMapper.xml"/>
+		<mapper resource="sqlmap4st/DeviceMapper.xml"/>
+		<mapper resource="sqlmap4st/ExpressMapper.xml"/>
+		<!-- <mapper resource="sqlmap4st/ExpresspriceDepricateMapper.xml"/> -->
+		<mapper resource="sqlmap4st/ExpressPriceMapper.xml"/>
+		<mapper resource="sqlmap4st/ExpressPriceSfMapper.xml"/>
+		<mapper resource="sqlmap4st/FeedbackMapper.xml"/>
+		<!-- <mapper resource="sqlmap4st/InviteRankMapper.xml"/> -->
+		<mapper resource="sqlmap4st/MideviceMapper.xml"/>
+		<mapper resource="sqlmap4st/ProvinceMapper.xml"/>
+		<mapper resource="sqlmap4st/RegionMapper.xml"/>
+		<mapper resource="sqlmap4st/ScorelistMapper.xml"/>
+		<!-- <mapper resource="sqlmap4st/SellerBindUserMapper.xml"/> -->
+		<mapper resource="sqlmap4st/SmsRecordsMapper.xml"/>
+		<!-- <mapper resource="sqlmap4st/StoreCollectMapper.xml"/> -->
+		<mapper resource="sqlmap4st/StoreExpressMapper.xml"/>
+		<mapper resource="sqlmap4st/StoreFavorableMapper.xml"/>
+		<!-- <mapper resource="sqlmap4st/StoreInfoLogMapper.xml"/> -->
+		<mapper resource="sqlmap4st/StoreMapper.xml"/>
+		<mapper resource="sqlmap4st/UpgradeMapper.xml"/>
+		<mapper resource="sqlmap4st/UpgradePloyMapper.xml"/>
+		<!-- <mapper resource="sqlmap4st/UserInvitatedMapper.xml"/> -->
+		<mapper resource="sqlmap4st/UserMapper.xml"/>
+		<mapper resource="sqlmap4st/UserPanshiMapper.xml"/>
+		<mapper resource="sqlmap4st/UserStatMapper.xml"/>
+		<mapper resource="sqlmap4st/UserSourceMapper.xml"/>
+		<mapper resource="sqlmap4st/VersionsMapper.xml"/>
+		<!-- <mapper resource="sqlmap4st/WxActiveLogMapper.xml"/> -->
+		<mapper resource="sqlmap4st/WxBindUserMapper.xml"/>
+		<!-- <mapper resource="sqlmap4st/WxInviteHitMapper.xml"/> -->
+	</mappers>
+</configuration>
